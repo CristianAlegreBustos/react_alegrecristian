@@ -1,9 +1,13 @@
 import React from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { ItemCount } from './ItemCount.jsx';
 
 
 export function ItemListContainer({greeting}){
+    const onAdd=(qtt)=>{
+        alert( `Agregando ${qtt} Items al Carrito`);
+    };
     return(
         <>
         {/* for desktop mode*/}
@@ -45,6 +49,9 @@ export function ItemListContainer({greeting}){
                 {greeting}
             </Typography>
         </Box>
+        <ItemCount stock={10} initial={0} onAdd={onAdd}>
+
+        </ItemCount>
         </>
     )
 }
