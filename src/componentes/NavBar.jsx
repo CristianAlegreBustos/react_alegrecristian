@@ -12,13 +12,11 @@ import MenuItem from '@mui/material/MenuItem';
 import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 import LoginIcon from '@mui/icons-material/Login';
 import LockIcon from '@mui/icons-material/Lock';
-//import { styled } from '@mui/material/styles';
-import { ThemeProvider } from '@mui/material/styles';
 import {Cart} from './CartWidget.jsx';
 
 
 // Estas son mis paginas a linkear
-const pages=['Inicio','Electrodomesticos','Muebles','Ropa'];
+const pages=['Inicio','Calzado','Accesorios','Ropa'];
 
 
 // Esta funcion crea un objeto por cada pagina y sus atributos html. 
@@ -28,7 +26,7 @@ let navBar_Items = pages.map(page=>({text:page,url:`./${page}`,className:'navbar
 
 // funcion que crea el navbar
 function NavBar(){
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -46,7 +44,7 @@ function NavBar(){
     setAnchorElUser(null);
   };
     return (
-      <AppBar position='static'>
+      <AppBar color='secondary' position='static'>
         <Container maxWidth="xl">
           <Toolbar disableGutters className='Toolbar' sx={{ 
             display:{md:'flex'}
@@ -86,18 +84,16 @@ function NavBar(){
             >
               {navBar_Items.map(function(item){
                 return (
-                    <MenuItem key={item.objectId}  onClick={handleCloseNavMenu} sx={{
-                      color:(theme) => theme.palette.mode === '#b2102f' ? '#ffa733' : '#ff9100',
+                    <MenuItem  key={item.objectId}  onClick={handleCloseNavMenu} sx={{
                       fontWeight:700,
                     }}>
-                      <Typography textAlign="center">{item.text}</Typography>
+                      <Typography color="primary" textAlign="center">{item.text}</Typography>
                     </MenuItem>
                 );
             })}
             </Menu>
-          <LocalFireDepartmentIcon sx={{ 
+          <LocalFireDepartmentIcon color='primary' sx={{ 
           display: { xs: 'flex', md: 'none' }, 
-          color:(theme) => theme.palette.mode === '#b2102f' ? '#ffa733' : '#ff9100',
           mr: 0.5 }} >
           </LocalFireDepartmentIcon>
           <Typography
@@ -105,6 +101,7 @@ function NavBar(){
             noWrap
             component="a"
             href=""
+            color='white'
             sx={{
               mr: 1,
               display: { xs: 'flex', md: 'none' },
@@ -112,7 +109,6 @@ function NavBar(){
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
               textDecoration: 'none',
             }}
           >
@@ -120,12 +116,10 @@ function NavBar(){
           </Typography>
           <Cart quantity={4}></Cart>
           <Button variant='contained' className='navbarItem_registrar'  startIcon={<LockIcon/>} sx={{ my: 1.5,justifyContent:'center',
-           bgcolor:(theme) => theme.palette.mode === '#b2102f' ? '#ffa733' : '#ff9100',
            boxShadow:3, display: 'flex' }}></Button>
 
            
-           <Button variant='contained' className='navbarItem_ingresar'  startIcon={<LoginIcon/>}  sx={{ my: 1.5,justifyContent:'center',
-           bgcolor:(theme) => theme.palette.mode === '#b2102f' ? '#ffa733' : '#ff9100', 
+           <Button variant='contained' className='navbarItem_ingresar'  startIcon={<LoginIcon/>}  sx={{ my: 1.5,justifyContent:'center', 
             boxShadow:3,
             display: 'flex' }}></Button>
           </Box>
@@ -133,12 +127,9 @@ function NavBar(){
 
           {/* for desktop mode*/}
           <Box   sx={{flexGrow:1, display:{xs:'none',md:'flex', flexDirection:'row',justifyContent:'space-evenly',alignContent:'center',alignItems:'center'}}}>
-          <LocalFireDepartmentIcon className='FireIcon'
+          <LocalFireDepartmentIcon color='primary' className='FireIcon'
           sx={{
             display: { xs: 'none', md: 'flex' },
-            color: (theme) =>
-            theme.palette.mode === '#b2102f' ? '#ffa733' : '#ff9100',
-            
             fontSize:60,
             mr:1,
           }}
@@ -149,13 +140,13 @@ function NavBar(){
             noWrap
             component="a"
             href="/"
+            color="white"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
               textDecoration: 'none',
             }}
           >
@@ -172,14 +163,11 @@ function NavBar(){
                      </Button>
                 );
             })}
-          <Cart quantity={4}></Cart>
+          <Cart  quantity={4}></Cart>
           <Button variant='contained' className='navbarItem_registrar'  startIcon={<LockIcon/>} sx={{ my: 1.5,
-           bgcolor:(theme) => theme.palette.mode === '#b2102f' ? '#ffa733' : '#ff9100',
            boxShadow:3, display: 'flex' }}>Ingresar</Button>
 
-           
-           <Button variant='contained' className='navbarItem_ingresar'  startIcon={<LoginIcon/>}  sx={{ my: 1.5,
-           bgcolor:(theme) => theme.palette.mode === '#b2102f' ? '#ffa733' : '#ff9100', 
+           <Button variant='contained' className='navbarItem_ingresar'  startIcon={<LoginIcon/>}  sx={{ my: 1.5, 
             boxShadow:3, 
             display: 'flex' }}>Registrarse</Button>
           </Box>

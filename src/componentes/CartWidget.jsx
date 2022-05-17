@@ -1,5 +1,4 @@
 import React from 'react';
-import Box from '@mui/material/Box';
 import Badge from '@mui/material/Badge';
 import SellIcon from '@mui/icons-material/Sell';
 

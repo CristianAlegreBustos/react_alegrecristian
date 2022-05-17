@@ -1,18 +1,24 @@
 import React from 'react';
 import NavBar from './componentes/NavBar.jsx';
 import { ItemListContainer } from './componentes/ItemListContainer.jsx';
-import { Container } from '@mui/material';
+import { Container,ThemeProvider } from '@mui/material';
+import {theme} from './theme.js';
+
 
 
 function App() {
+
+
   return (
     <>
-    <NavBar />
+    <ThemeProvider theme={theme}>
+    <NavBar/>
     <Container maxWidth="xl">
-    <ItemListContainer greeting='Nos estamos preparando para que todo este Flama'>
+    <ItemListContainer>
       </ItemListContainer>
 
     </Container>
+    </ThemeProvider>
     </>
   );
 }
