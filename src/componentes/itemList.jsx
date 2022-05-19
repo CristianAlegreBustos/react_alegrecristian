@@ -2,9 +2,6 @@ import React from 'react';
 import { ItemCard } from './item.jsx';
 
 export function ItemList({productList,loading,error}){
-    console.log(productList);
-    console.log(loading);
-    console.log(error);
     return(
         <>
         {loading && "loading..."}

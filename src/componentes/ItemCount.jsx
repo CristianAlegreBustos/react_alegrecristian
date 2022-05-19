@@ -17,15 +17,15 @@ const red = {
 //stilos
 const AddCarButtonRoot = styled('button')`
   font-family: "Roboto","Helvetica","Arial",sans-serif;
-  font-size: 1.2rem;
+  font-size: 1rem;
   background-color: ${red[500]};
-  padding: 14px 14px;
+  padding: 13px 5px;
   border-radius:4px;
   color: white;
   transition: all 150ms ease;
   cursor: pointer;
   border: none;
-  margin:1.2rem;
+  margin:0.5rem;
   &:hover {
     background-color: ${red[600]};
   }
@@ -82,7 +82,7 @@ const orange = {
 //Styles
 const CustomCountButtonRoot = styled('button')`
   font-family: "Roboto","Helvetica","Arial",sans-serif;
-  font-size: 1.2rem;
+  font-size: 0.8rem;
   background-color: ${orange[500]};
   padding: 10px 12px;
   border-radius:4px;
@@ -90,7 +90,7 @@ const CustomCountButtonRoot = styled('button')`
   transition: all 150ms ease;
   cursor: pointer;
   border: none;
-  margin:1.2rem;
+  margin:0rem;
   &:hover {
     background-color: ${orange[600]};
   }
@@ -141,16 +141,16 @@ export function ItemCount({stock,initial,onAdd}){
     //Create state initial = 1;
 const [init, setInit] = useState(initial);
     return(                                                            
-        <CardActions sx={{display:'flex', flexDirection:'column' }}>
-        <Box  sx={{display:'flex', flexDirection:'row' ,alignItems:'center',columnGap:2.5}}>
+        <CardActions sx={{display:'flex', flexDirection:'row',columnGap:5 }}>
+        <Box  sx={{display:'flex', flexDirection:'row' ,alignItems:'center',columnGap:1.5}}>
           <CustomCountButtonRoot onClick={()=>setInit( init>0 ? init-1 : 0 )} size="small" sx={{fontSize:20}}
          >-</CustomCountButtonRoot>
           <Typography variant="body2" color="text.secondary" sx={{fontSize:'large'}}>
             {init}
           </Typography>
-          <CustomCountButtonRoot onClick={()=>setInit(init<stock? init+1: init)} size="small" >+</CustomCountButtonRoot>
+          <CustomCountButtonRoot onClick={()=>setInit(init<stock? init+1: init)} size="small" sx={{fontSize:20,p:'10px 10px'}}>+</CustomCountButtonRoot>
         </Box>
-          <AddCarButton disabled={init===0?true:false} onClick={()=>onAdd(init)} size="large" sx={{ m:2.5}}>Agregar al Carrito</AddCarButton>
+          <AddCarButton disabled={init===0?true:false} onClick={()=>onAdd(init)} size="small" sx={{ m:"0",p:"0"}}>Agregar al Carrito</AddCarButton>
         </CardActions>
     );
 }
