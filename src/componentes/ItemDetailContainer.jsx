@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ItemDetail } from './itemDetail.jsx';
 import { Box } from '@mui/material';
+import { useParams } from 'react-router-dom';
 
 export function ItemDetailContainer() {
 
@@ -9,10 +10,14 @@ const[pictures,setPictures]=useState([]);
 const[loading,setLoading]=useState(false);
 const[error,setError]=useState("");
 
+const { productId } = useParams();
+
 useEffect(() => {
-    setLoading(true);
-    fetch('https://api.mercadolibre.com/items/MLA1131508940').then(
+    setLoading(true); //MLA1131508940
+    debugger;
+    fetch(`https://api.mercadolibre.com/items/${productId}`).then(
         response=>{
+            debugger;
             if (!response.ok) {
                 setLoading(false);
                 throw new Error("HTTP error " + response.status);
@@ -20,14 +25,13 @@ useEffect(() => {
             return response.json();
         }).then(
             data=>{
-                setTimeout(()=>{ 
+                debugger;
                 setLoading(false);
-                reorganize(data)
+                reorganize(data);
                 setproductDetail(data);
-            })
         })
         .catch(error=>setError(`Hubo un Error: ${error}`))
-  }, []);
+  }, [productId]);
 
 function reorganize(data){
     let arrayPicture=[]
@@ -35,8 +39,7 @@ function reorganize(data){
         arrayPicture.push(data.pictures[key].url)
     }
     setPictures(arrayPicture)
-    //data.pictures.map(picture=>setPictures(pictures.push(picture.url)))
-    console.log(pictures)
+    
 }
 return (
     <>

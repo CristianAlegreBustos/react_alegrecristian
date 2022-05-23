@@ -13,14 +13,38 @@ import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 import LoginIcon from '@mui/icons-material/Login';
 import LockIcon from '@mui/icons-material/Lock';
 import {Cart} from './CartWidget.jsx';
+import { Link, NavLink } from 'react-router-dom';
 
 
 // Estas son mis paginas a linkear
 const pages=['Inicio','Calzado','Accesorios','Ropa'];
 
+//object function
+function chooseObjectId(page){
+  switch (page) {
+    case 'Inicio':
+    
+    return '/';
+      break;
+    case 'Calzado':
+
+    return '/category/zapatillas de basquet';
+    break;
+    case 'Accesorios':
+      return '/category/accesorios de basquet';
+    break;
+    case 'Ropa':
+      return '/category/ropa de basquet'
+    break;
+    default: 
+      return 'error';
+      break;
+  }
+
+}
 
 // Esta funcion crea un objeto por cada pagina y sus atributos html. 
-let navBar_Items = pages.map(page=>({text:page,url:`./${page}`,className:'navbarItem',objectId:`id_${page}`}));
+let navBar_Items = pages.map(page=>({text:page,url:`./${page}`,className:'navbarItem',objectId:`id_${page}`,categoryId:chooseObjectId(page)}));
 
 
 
@@ -87,20 +111,19 @@ function NavBar(){
                     <MenuItem  key={item.objectId}  onClick={handleCloseNavMenu} sx={{
                       fontWeight:700,
                     }}>
-                      <Typography color="primary" textAlign="center">{item.text}</Typography>
+                    <Link to={encodeURI(item.categoryId)}><Typography color="primary" textAlign="center">{item.text}</Typography></Link> 
                     </MenuItem>
                 );
             })}
             </Menu>
-          <LocalFireDepartmentIcon color='primary' sx={{ 
-          display: { xs: 'flex', md: 'none' }, 
-          mr: 0.5 }} >
-          </LocalFireDepartmentIcon>
-          <Typography
+            <LocalFireDepartmentIcon color='primary' sx={{ 
+            display: { xs: 'flex', md: 'none' }, 
+            mr: 0.5 }} >
+            </LocalFireDepartmentIcon>
+        
+            <Link to={'/'} style={{textDecoration:'none'}}><Typography
             variant="h5"
             noWrap
-            component="a"
-            href=""
             color='white'
             sx={{
               mr: 1,
@@ -113,7 +136,7 @@ function NavBar(){
             }}
           >
             Tienda FB
-          </Typography>
+          </Typography></Link>
           <Cart quantity={4}></Cart>
           <Button variant='contained' className='navbarItem_registrar'  startIcon={<LockIcon/>} sx={{ my: 1.5,justifyContent:'center',
            boxShadow:3, display: 'flex' }}></Button>
@@ -127,6 +150,7 @@ function NavBar(){
 
           {/* for desktop mode*/}
           <Box   sx={{flexGrow:1, display:{xs:'none',md:'flex', flexDirection:'row',justifyContent:'space-evenly',alignContent:'center',alignItems:'center'}}}>
+          <Box sx={{display:'flex', flexDirection:'row', alignItems:'center' }}>
           <LocalFireDepartmentIcon color='primary' className='FireIcon'
           sx={{
             display: { xs: 'none', md: 'flex' },
@@ -135,11 +159,9 @@ function NavBar(){
           }}
           >
           </LocalFireDepartmentIcon>
-          <Typography
+          <Link to={'/'} style={{textDecoration:'none'}}><Typography
             variant="h6"
             noWrap
-            component="a"
-            href="/"
             color="white"
             sx={{
               mr: 2,
@@ -151,16 +173,19 @@ function NavBar(){
             }}
           >
             Tienda FB
-          </Typography> 
+          </Typography> </Link>
+          </Box>
           {navBar_Items.map(function(item){
                 return (
-                    <Button key={item.objectId} className={item.className} id={item.objectId}
-                     href={item.url} target={item.target}
+                <Link to={encodeURI(item.categoryId)} style={{textDecoration:'none'}}>
+                  <Button key={item.objectId} className={item.className} id={item.objectId}
+                     target={item.target}
                      onClick={handleCloseNavMenu}
                       sx={{ my: 2, color: 'white', display: 'block' }}
                      >
                        {item.text}
                      </Button>
+                </Link>
                 );
             })}
           <Cart  quantity={4}></Cart>

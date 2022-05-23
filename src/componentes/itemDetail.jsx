@@ -61,10 +61,11 @@ return(
             /> 
             <CardContent sx={{display:'flex', flexDirection:'row', justifyContent:'center',pl:'0',pr:'0', columnGap:2}}>
     {pictureArray.map((picture,index)=>
+    index <3 && 
             <CardMedia
                 key={index}
                 component="img"
-                height="110"
+                height="150"
                 image= {picture}
                 alt = "Detail of Shoes"
                 onMouseEnter={()=>setMainImage(picture)}
@@ -74,7 +75,7 @@ return(
             )}
      </CardContent>
     </CardContent> 
-    <CardContent sx={{display:'flex', flexDirection:'column', width:'35%', justifyContent:'space-between',rowGap:3.5}}>
+    <CardContent sx={{display:'flex', flexDirection:'column', width:'35%', justifyContent:'space-between'}}>
         <Box>
             <Typography  sx={{display:'flex',fontWeight:400,fontSize:'0.875rem'}}>
             {`${productDetail.condition==="new"? "Nuevo": "Usado"} | ${productDetail.sold_quantity} vendidos`}
@@ -99,34 +100,36 @@ return(
             {`en 12  $${(productDetail.price*1.5862)/12}`}
             </Typography>
         </Box>
-        <Box sx={{display:'Flex', flexDirection:'column', rowGap:2}}> 
-        <Typography  color="text.secondary" sx={{display:'flex',fontWeight:"600",fontSize:'1rem'}}>
-            {`Talle: ${talle}`}
-        </Typography>
-        <ButtonGroup variant="outlined" aria-label="outlined button group" >
-            {productDetail.variations && productDetail.variations.map(item=> item.available_quantity> 0 &&
-                <Button sx={{color:'white',bgcolor:'blue'}} key={`talle-${item.id}`} id={item.id} value={item.attribute_combinations[2].value_name} onClick={e => handleInput(e, "value")} >{item.attribute_combinations[2].value_name}</Button>
-            )}
-    </ButtonGroup>
-
-        {productDetail.variations && productDetail.variations.map((item,index)=> item.available_quantity> 0 && ! duplicateColors.includes(item.attribute_combinations[0].value_name) && duplicateColors.push(item.attribute_combinations[0].value_name) &&
-        <Box key={index} sx={{display:'flex', flexDirection:'row', columnGap:2}}>
-            <Typography sx={{fontSize:"1rem", fontWeight:"400"}}> {`${item.attribute_combinations[0].name}:`}</Typography>
-        <ButtonGroup variant="outlined" aria-label="outlined button group">
-            <Button sx={{color:'white',bgcolor:'blue'}} key={`color-${item.id}`} value={item.attribute_combinations[0].value_name}>{item.attribute_combinations[0].value_name}</Button>
-        </ButtonGroup>
+        <Box sx={{display:'Flex', flexDirection:'column'}}> 
+            <Typography  color="text.secondary" sx={{display:'flex',fontWeight:"600",fontSize:'1rem'}}>
+                {`Talle: ${talle}`}
+            </Typography>
+            <ButtonGroup variant="outlined" aria-label="outlined button group" sx={{flexWrap:'wrap', justifyContent: 'space-between',Gap:1}} >
+                {productDetail.variations && productDetail.variations.map(item=> item.available_quantity> 0 &&
+                    <Button sx={{color:'white',bgcolor:'blue'}} key={`talle-${item.id}`} id={item.id} value={item.attribute_combinations[2]!==undefined ? item.attribute_combinations[2].value_name:item.attribute_combinations[1].value_name} onClick={e => handleInput(e, "value")} >{item.attribute_combinations[2]!== undefined? item.attribute_combinations[2].value_name:item.attribute_combinations[1].value_name}</Button>
+                )}
+            </ButtonGroup>
         </Box>
-        )}
-
-        {productDetail.variations && productDetail.variations.map((item,key)=> item.available_quantity> 0 && ! duplicateDesing.includes(item.attribute_combinations[1].value_name) && duplicateDesing.push(item.attribute_combinations[1].value_name) &&
+        <Box sx={{display:'flex', flexDirection:'row',gap:1}}>
+            <Typography sx={{fontSize:"1rem", fontWeight:"400"}}> {`Color:`}</Typography>
+            {productDetail.variations && productDetail.variations.map((item,index)=> item.available_quantity> 0 && ! duplicateColors.includes(item.attribute_combinations[0].value_name) && duplicateColors.push(item.attribute_combinations[0].value_name) &&
+            <Box key={index} sx={{display:'flex', flexDirection:'column', columnGap:2}}>
+            
+            <ButtonGroup variant="outlined" aria-label="outlined button group" >
+            <Button sx={{color:'white',bgcolor:'blue'}} key={`color-${item.id}`} value={item.attribute_combinations[0].value_name}>{item.attribute_combinations[0].value_name}</Button>
+            </ButtonGroup>
+            </Box>
+            )}
+        </Box>
+        {productDetail.variations && productDetail.variations.map((item,key)=> item.available_quantity> 0 && item.attribute_combinations[1].name==='Diseño de la tela' && ! duplicateDesing.includes(item.attribute_combinations[1].value_name) && duplicateDesing.push(item.attribute_combinations[1].value_name) &&
         <Box key={key} sx={{display:'flex', flexDirection:'row',columnGap:2}}>
             <Typography sx={{fontSize:"1rem", fontWeight:"400"}}> {`${capitalize(item.attribute_combinations[1].name)}:`}</Typography>
         <ButtonGroup variant="outlined" aria-label="outlined button group">
-            <Button sx={{color:'white',bgcolor:'blue'}} key={`desing-${item.id}`} value={item.attribute_combinations[1].value_name}>{item.attribute_combinations[1].value_name}</Button>
+            <Button sx={{color:'white',bgcolor:'blue'}} key={`desing-${item.id}`} value={ item.attribute_combinations[1].value_name}>{item.attribute_combinations[1].value_name}</Button>
         </ButtonGroup>
         </Box>
         )}        
-        </Box>
+        
         <Box  sx={{display:'flex', flexDirection:'column',rowGap:2}}>
         <Typography sx={{fontSize:"1rem", fontWeight:"600"}}> {productDetail.available_quantity>0 && "Stock Disponible"}</Typography>
 

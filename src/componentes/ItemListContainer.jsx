@@ -1,17 +1,20 @@
-import React,{ useState,useEffect} from 'react';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+//Este componente es el layout para la vista previa de los productos
 
+import React,{ useState,useEffect} from 'react';
+import Box from '@mui/material/Box';
+import { useParams } from 'react-router-dom';
 import { ItemList } from './itemList.jsx';
 import { productos } from './arrayProduct.js';
-
 
 export function ItemListContainer({greeting}){
     const [productList,setProductList]=useState([]);
     const[loading,setLoading]=useState(false);
     const[error,setError]=useState("");
+   
+    const { categoryId } = useParams();
 
     useEffect(()=>{
+      console.log(categoryId);
         setLoading(true);
         const asyncList=new Promise((res,rej)=>
         {
@@ -20,14 +23,21 @@ export function ItemListContainer({greeting}){
           },2000);
         });
     
-        asyncList.then((result)=>{setProductList(result);setLoading(false);},
+        asyncList.then((result)=>{
+        debugger;
+        let arrayFilter=[];
+        result.map(product=>(product.categoryId===categoryId && arrayFilter.push(product)));
+        setProductList(arrayFilter);
+        debugger;
+        categoryId==='inicio'||categoryId===undefined && setProductList(result);
+        setLoading(false);},
         error=>{setError(`No pudimos obtener los productos: ${error}`);setLoading(false);})
         .catch((error)=>{
           setError(`Hubo un error: ${error}`);
           setLoading(false);
         });
         
-      },[]);
+      },[categoryId]);
 
     return(
         <>
