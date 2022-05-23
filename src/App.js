@@ -21,6 +21,7 @@ function App() {
         <Route path="/" element={<ItemListContainer></ItemListContainer>}></Route>
         <Route path="/category/:categoryId" element={<ItemListContainer></ItemListContainer>}></Route>
         <Route path="/itemDetail/:productId" element={<ItemDetailContainer></ItemDetailContainer>}></Route>
+        <Route path="/cart" element={<LandingPage message={ 'Finalizando Compra'}></LandingPage>}></Route>
       </Routes>
     </Container>
     </ThemeProvider>

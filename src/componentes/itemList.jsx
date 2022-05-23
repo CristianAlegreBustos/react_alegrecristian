@@ -10,7 +10,7 @@ export function ItemList({productList,loading,error}){
         <>
         {loading && productList.length===0 && <LandingPage message={'Loading...'}></LandingPage>}
         {/* El condicional de arriba es para iterar los datos de dos formas distintas, cuando los productos son mas que uno o uno*/}
-        {productList.length!==0 ? productList.map((product)=>
+        {productList.length!==0 ? productList.map((product,index)=>
            <Link to={`/itemDetail/${product.apiId}`} style={{textDecoration:'none'}}> <ItemCard key={product.id} id={product.id} title={product.title} description={product.description} price={product.price} pictureURL={product.pictureURL} stock={product.stock}></ItemCard></Link>): !loading && <LandingPage message={'No tenemos esos articulos, pero ya mismo'}></LandingPage>}
         {error && <LandingPage message={error}></LandingPage>}
         </>

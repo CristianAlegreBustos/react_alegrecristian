@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography';
 import { NativeSelect } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 import { ItemCount } from './ItemCount';
+import { Link } from 'react-router-dom';
 
 
 
@@ -37,9 +38,13 @@ function handleInput(e) {
    setTalle(e.target.value);
 }
 
-const [quanity,setQuantity]= useState("");
-function quantityHandle(e) {
-    setQuantity(e.target.value);
+const [totalProduct,setTotalProduct]= useState(0);
+
+function onAdd(quantityToAdd){
+    let h=0;
+    h+=quantityToAdd;
+    setTotalProduct(h);
+    
  }
 
 // capitalize string
@@ -47,6 +52,7 @@ function capitalize(str) {
     const lower = str.toLowerCase();
     return str.charAt(0).toUpperCase() + lower.slice(1);
   }
+
 return(
         <>
     {loading && "loading..."}
@@ -134,7 +140,7 @@ return(
         <Typography sx={{fontSize:"1rem", fontWeight:"600"}}> {productDetail.available_quantity>0 && "Stock Disponible"}</Typography>
 
         </Box>
-        <ItemCount stock={productDetail.available_quantity} initial={1}  ></ItemCount>
+       <Link to={'cart'}> <ItemCount stock={productDetail.available_quantity} initial={0} onAdd={onAdd}></ItemCount></Link>
       </CardContent>
      </Card>
         </>

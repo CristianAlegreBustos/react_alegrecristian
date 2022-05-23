@@ -106,12 +106,12 @@ function NavBar(){
                 
               }}
             >
-              {navBar_Items.map(function(item){
+              {navBar_Items.map(function(item,index){
                 return (
                     <MenuItem  key={item.objectId}  onClick={handleCloseNavMenu} sx={{
                       fontWeight:700,
                     }}>
-                    <Link to={encodeURI(item.categoryId)}><Typography color="primary" textAlign="center">{item.text}</Typography></Link> 
+                    <Link  key={index} to={encodeURI(item.categoryId)}><Typography color="primary" textAlign="center">{item.text}</Typography></Link> 
                     </MenuItem>
                 );
             })}
@@ -175,9 +175,9 @@ function NavBar(){
             Tienda FB
           </Typography> </Link>
           </Box>
-          {navBar_Items.map(function(item){
+          {navBar_Items.map(function(item,index){
                 return (
-                <Link to={encodeURI(item.categoryId)} style={{textDecoration:'none'}}>
+                <Link  key={index} to={encodeURI(item.categoryId)} style={{textDecoration:'none'}}>
                   <Button key={item.objectId} className={item.className} id={item.objectId}
                      target={item.target}
                      onClick={handleCloseNavMenu}
