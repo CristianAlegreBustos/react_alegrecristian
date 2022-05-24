@@ -142,7 +142,7 @@ return(
         )}        
         
         <Box  sx={{display:'flex', flexDirection:'column',rowGap:2}}>
-        <Typography sx={{fontSize:"1rem", fontWeight:"600"}}> {productDetail.available_quantity>0 ? "Stock Disponible":"Stock No Disponible"}</Typography>
+        <Typography sx={{fontSize:"1rem", fontWeight:"600"}}> { productDetail.available_quantity>0 ? "Stock Disponible":"Stock No Disponible"}</Typography>
         </Box>
      <ItemCount stock={productDetail.available_quantity} initial={0} onAdd={onAdd} productId={productDetail.id} price={productDetail.price}></ItemCount>
       </CardContent>
