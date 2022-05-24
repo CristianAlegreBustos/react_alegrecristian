@@ -38,13 +38,11 @@ function handleInput(e) {
    setTalle(e.target.value);
 }
 
-const [totalProduct,setTotalProduct]= useState(0);
 
 function onAdd(quantityToAdd){
     let h=0;
     h+=quantityToAdd;
-    setTotalProduct(h);
-    
+    alert(`You Added ${h} to the Cart`)
  }
 
 // capitalize string
@@ -140,7 +138,7 @@ return(
         <Typography sx={{fontSize:"1rem", fontWeight:"600"}}> {productDetail.available_quantity>0 && "Stock Disponible"}</Typography>
 
         </Box>
-       <Link to={'cart'}> <ItemCount stock={productDetail.available_quantity} initial={0} onAdd={onAdd}></ItemCount></Link>
+     <ItemCount stock={productDetail.available_quantity} initial={0} onAdd={onAdd}></ItemCount>
       </CardContent>
      </Card>
         </>

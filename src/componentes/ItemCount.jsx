@@ -6,6 +6,17 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useButton } from '@mui/base/ButtonUnstyled';
 import { styled } from '@mui/system';
+import { Link } from 'react-router-dom';
+import { Button } from '@mui/material';
+
+export function ItemCount({stock,initial,onAdd}){
+    //Create state initial = 1;
+const [init, setInit] = useState(initial);
+const [displayAddButtom, setAddButtom] = useState(true);
+
+function changeDisplayButtom() {
+  setAddButtom(false);
+}
 
 //color
 const red = {
@@ -14,7 +25,7 @@ const red = {
   700: '#b2102f',
 };
 
-//stilos
+//estilos
 const AddCarButtonRoot = styled('button')`
   font-family: "Roboto","Helvetica","Arial",sans-serif;
   font-size: 1rem;
@@ -90,6 +101,7 @@ const CustomCountButtonRoot = styled('button')`
   transition: all 150ms ease;
   cursor: pointer;
   border: none;
+
   margin:0rem;
   &:hover {
     background-color: ${orange[600]};
@@ -134,14 +146,9 @@ const CustomCountButton = React.forwardRef(function CustomButton(props, ref) {
 CustomCountButton.propTypes = {
   children: PropTypes.node,
 };
-
-
-
-export function ItemCount({stock,initial,onAdd}){
-    //Create state initial = 1;
-const [init, setInit] = useState(initial);
-    return(                                                            
-        <CardActions sx={{display:'flex', flexDirection:'row',columnGap:5 }}>
+    return(   
+      <>                                                         
+        <CardActions sx={{flexDirection:'row',columnGap:5, display:`${displayAddButtom ? "flex" : "none"}`}}>
         <Box  sx={{display:'flex', flexDirection:'row' ,alignItems:'center',columnGap:1.5}}>
           <CustomCountButtonRoot onClick={()=>setInit( init>0 ? init-1 : 0 )} size="small" sx={{fontSize:20}}
          >-</CustomCountButtonRoot>
@@ -150,8 +157,10 @@ const [init, setInit] = useState(initial);
           </Typography>
           <CustomCountButtonRoot onClick={()=>setInit(init<stock? init+1: init)} size="small" sx={{fontSize:20,p:'10px 10px'}}>+</CustomCountButtonRoot>
         </Box>
-          <AddCarButton disabled={init===0?true:false}  onClick={()=>onAdd(init)}  size="small" sx={{ m:"0",p:"0"}}>Agregar al Carrito</AddCarButton>
+        <AddCarButton disabled={init===0?true:false}  onClick={()=>{onAdd(init);changeDisplayButtom()}}  size="small"  sx={{ m:"0",p:"0"}}>Agregar al Carrito</AddCarButton>
         </CardActions>
+         <Link to={`/cart`} style={{textDecoration:'none', display:`${displayAddButtom ? "none" : "flex"}`}}><AddCarButton  size="small" sx={{ m:"0",p:"0",display:`${displayAddButtom ? "none" : "block"}`}}>Ir al Carrito</AddCarButton></Link>
+         </>
     );
 }
 
