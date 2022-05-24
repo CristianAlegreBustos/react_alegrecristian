@@ -1,4 +1,4 @@
-import React ,{useState}from 'react'
+import React ,{useContext, useState}from 'react'
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -8,21 +8,18 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import { ButtonGroup,Button } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import { NativeSelect } from '@mui/material';
-import FormControl from '@mui/material/FormControl';
 import { ItemCount } from './ItemCount';
-import { Link } from 'react-router-dom';
+import {contextCart} from '../context/cartContext.jsx';
 
 
 
 export function ItemDetail({pictureArray,productDetail,loading,error}){
+    const {addItem}= useContext(contextCart)
     const theme = useTheme();
-    console.log(productDetail)
     const duplicateColors= []; // Verify the duplicate elements
     const duplicateDesing= []; // Verify the Desing elements
 
 const [mainImage,setMainImage]=useState(pictureArray && pictureArray[0]);
-console.log(mainImage);
 //To the like buttom, (heart)
 const [value, setValue] = React.useState('recents');
 
@@ -39,10 +36,20 @@ function handleInput(e) {
 }
 
 
-function onAdd(quantityToAdd){
-    let h=0;
-    h+=quantityToAdd;
-    alert(`You Added ${h} to the Cart`)
+function onAdd(quantityToAdd,productId,price,stock){
+    debugger;
+    if (quantityToAdd <=stock){
+        let item={
+            id:productId,
+            quantity:quantityToAdd,
+            price:price,
+            stock:stock-quantityToAdd
+        }
+        addItem(item)
+        alert(`You Added ${item.quantity} of the ${item.id}  to the Cart`)
+    }else{
+        alert(`There is not enough stock for this article`)
+    }
  }
 
 // capitalize string
@@ -135,10 +142,9 @@ return(
         )}        
         
         <Box  sx={{display:'flex', flexDirection:'column',rowGap:2}}>
-        <Typography sx={{fontSize:"1rem", fontWeight:"600"}}> {productDetail.available_quantity>0 && "Stock Disponible"}</Typography>
-
+        <Typography sx={{fontSize:"1rem", fontWeight:"600"}}> {productDetail.available_quantity>0 ? "Stock Disponible":"Stock No Disponible"}</Typography>
         </Box>
-     <ItemCount stock={productDetail.available_quantity} initial={0} onAdd={onAdd}></ItemCount>
+     <ItemCount stock={productDetail.available_quantity} initial={0} onAdd={onAdd} productId={productDetail.id} price={productDetail.price}></ItemCount>
       </CardContent>
      </Card>
         </>

@@ -33,7 +33,7 @@ export let  productos=[{
     title:'Under Armour Spawn 3',
     description:'La mejor armadura para cada batalla',
     price:'$39900',
-    pictureURL:'./images/thumb/UnderArmourSpawn3.jpg',
+    pictureURL:'https://http2.mlstatic.com/D_768057-MLA49626754627_042022-O.jpg',
     categoryId:'zapatillas de basquet',
     apiId:'MLA1131508940'
   },

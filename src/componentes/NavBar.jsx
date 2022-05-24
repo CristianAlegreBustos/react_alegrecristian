@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -13,7 +13,8 @@ import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 import LoginIcon from '@mui/icons-material/Login';
 import LockIcon from '@mui/icons-material/Lock';
 import {Cart} from './CartWidget.jsx';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import {contextCart} from '../context/cartContext.jsx';
 
 
 // Estas son mis paginas a linkear
@@ -50,6 +51,8 @@ let navBar_Items = pages.map(page=>({text:page,url:`./${page}`,className:'navbar
 
 // funcion que crea el navbar
 function NavBar(){
+  const {cart}= useContext(contextCart);
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -137,7 +140,7 @@ function NavBar(){
           >
             Tienda FB
           </Typography></Link>
-          <Cart quantity={4}></Cart>
+          <Cart quantity={cart.length}></Cart>
           <Button variant='contained' className='navbarItem_registrar'  startIcon={<LockIcon/>} sx={{ my: 1.5,justifyContent:'center',
            boxShadow:3, display: 'flex' }}></Button>
 
@@ -188,7 +191,7 @@ function NavBar(){
                 </Link>
                 );
             })}
-          <Cart  quantity={4}></Cart>
+          <Cart  quantity={cart.length}></Cart>
           <Button variant='contained' className='navbarItem_registrar'  startIcon={<LockIcon/>} sx={{ my: 1.5,
            boxShadow:3, display: 'flex' }}>Ingresar</Button>
 
