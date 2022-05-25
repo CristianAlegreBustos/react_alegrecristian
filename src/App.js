@@ -7,6 +7,7 @@ import {ItemDetailContainer} from './componentes/ItemDetailContainer.jsx';
 import {BrowserRouter,Routes,Route, useParams} from "react-router-dom";
 import { LandingPage } from './componentes/landingPage.jsx';
 import {CartContextHOC} from './context/cartContext.jsx';
+import { Cart } from './componentes/cart.jsx';
 
 
 
@@ -24,7 +25,7 @@ function App() {
         <Route path="/" element={<ItemListContainer></ItemListContainer>}></Route>
         <Route path="/category/:categoryId" element={<ItemListContainer></ItemListContainer>}></Route>
         <Route path="/itemDetail/:productId" element={<ItemDetailContainer></ItemDetailContainer>}></Route>
-        <Route path="/cart" element={<LandingPage message={ 'Finalizando Compra'}></LandingPage>}></Route>
+        <Route path="/cart" element={<Cart></Cart>}></Route>
       </Routes>
     </Container>
     </ThemeProvider>

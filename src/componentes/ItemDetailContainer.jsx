@@ -44,11 +44,11 @@ function reorganize(data){
 return (
     <>
     {/* for desktop mode*/}
-    <Box className='listContainer' sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', flexDirection:'row' ,justifyContent: 'space-evenly',alignItems: 'center',flexWrap:'wrap', rowGap:25,marginTop:20} }}>
+    <Box className='detailContainer' sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', flexDirection:'row' ,justifyContent: 'space-evenly',alignItems: 'center',flexWrap:'wrap', rowGap:25,marginTop:20,marginBottom:20} }}>
     <ItemDetail pictureArray={pictures} productDetail={productDetail} loading={loading} error={error}></ItemDetail>
     </Box>
     {/* for responsive screens*/}
-    <Box  className='listContainer' sx={{flexGrow:0, flexDirection:'column',display:{xs:'flex',flexDirection:'column' ,justifyContent: 'center',alignItems: 'center',md:'none'}}}>
+    <Box  className='detailContainer' sx={{flexGrow:0, flexDirection:'column',display:{xs:'flex',flexDirection:'column' ,justifyContent: 'center',alignItems: 'center',md:'none'}}}>
     <ItemDetail pictureArray={pictures} productDetail={productDetail} loading={loading} error={error}></ItemDetail>
     </Box>
     

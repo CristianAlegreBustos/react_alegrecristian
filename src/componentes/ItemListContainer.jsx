@@ -42,7 +42,7 @@ export function ItemListContainer({greeting}){
     return(
         <>
         {/* for desktop mode*/}
-        <Box className='listContainer' sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', flexDirection:'row' ,justifyContent: 'space-evenly',alignItems: 'center',flexWrap:'wrap', rowGap:25,marginTop:20} }}>
+        <Box className='listContainer' sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', flexDirection:'row' ,justifyContent: 'space-evenly',alignItems: 'center',flexWrap:'wrap', rowGap:25,marginTop:20, mb:20} }}>
         <ItemList productList={productList} loading={loading} error={error}></ItemList>
         </Box>
         {/* for responsive screens*/}
