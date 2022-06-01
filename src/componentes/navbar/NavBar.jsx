@@ -14,7 +14,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import LockIcon from '@mui/icons-material/Lock';
 import {Cart} from './CartWidget.jsx';
 import { Link } from 'react-router-dom';
-import {contextCart} from '../context/cartContext.jsx';
+import {contextCart} from '../../context/cartContext.jsx';
 
 
 

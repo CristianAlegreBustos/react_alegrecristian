@@ -2,11 +2,8 @@ import React, { useEffect, useState ,useContext} from 'react';
 import { Box, Typography } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import { CardMedia,BottomNavigationAction } from '@mui/material';
-import {contextCart} from '../context/cartContext.jsx';
+import {contextCart} from '../../context/cartContext.jsx';
 import { TableRow,TableCell } from '@mui/material';
-
-
-
 
 export function CartItem({thumbImage,detalle,nameProduct,price,cantidad,productId}){
     const {removeItem}= useContext(contextCart);
@@ -17,9 +14,10 @@ export function CartItem({thumbImage,detalle,nameProduct,price,cantidad,productI
             <TableCell component="th" scope="row">
             <CardMedia
                     component="img"
-                    height="100"
+                    height="80"
                     image= {thumbImage}
                     alt = {detalle}
+                    sx={{width:'50%', justifyContent:'center'}}
                 /> 
             </TableCell>
             <TableCell component="th" scope="row">

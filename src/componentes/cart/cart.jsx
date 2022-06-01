@@ -1,12 +1,12 @@
-import React, { useEffect, useState,useContext } from 'react';
-import {contextCart} from '../context/cartContext.jsx';
+import React, {useContext } from 'react';
+import {contextCart} from '../../context/cartContext.jsx';
 import { CartItem } from './cartItem.jsx';
-import { Paper, TableRow, Typography } from '@mui/material';
+import { Paper, Typography } from '@mui/material';
 import { TableHead,TableBody } from '@mui/material';
 import { ColumnCartName } from './columnCartName.jsx';
-import { TableContainer,Table,TableCell,Button } from '@mui/material';
+import { TableContainer,Table,Button } from '@mui/material';
 import { Box } from '@mui/system';
-import { LandingPage } from './landingPage.jsx';
+import { LandingPage } from '../landingPages/landingPage.jsx';
 
 
 

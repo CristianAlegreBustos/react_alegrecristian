@@ -4,7 +4,7 @@ import React,{ useState,useEffect} from 'react';
 import Box from '@mui/material/Box';
 import { useParams } from 'react-router-dom';
 import { ItemList } from './itemList.jsx';
-import { productos } from './arrayProduct.js';
+import {collection,getDocs,getFirestore} from "firebase/firestore";
 
 export function ItemListContainer({greeting}){
     const [productList,setProductList]=useState([]);
@@ -14,28 +14,16 @@ export function ItemListContainer({greeting}){
     const { categoryId } = useParams();
 
     useEffect(()=>{
-      console.log(categoryId);
         setLoading(true);
-        const asyncList=new Promise((res,rej)=>
-        {
-          setTimeout(()=>{
-            res(productos)
-          },2000);
-        });
-    
-        asyncList.then((result)=>{
-        debugger;
-        let arrayFilter=[];
-        result.map(product=>(product.categoryId===categoryId && arrayFilter.push(product)));
-        setProductList(arrayFilter);
-        debugger;
-        categoryId==='inicio'||categoryId===undefined && setProductList(result);
-        setLoading(false);},
-        error=>{setError(`No pudimos obtener los productos: ${error}`);setLoading(false);})
-        .catch((error)=>{
-          setError(`Hubo un error: ${error}`);
+        const db=getFirestore();
+        const productList=collection(db,"Products");
+        getDocs(productList).then((snapshot)=>{
+          if (snapshot.size===0){
+            setLoading(false);
+          }
           setLoading(false);
-        });
+          setProductList(snapshot.docs.map((doc)=>({id:doc.id,...doc.data()})))
+        })
         
       },[categoryId]);
 

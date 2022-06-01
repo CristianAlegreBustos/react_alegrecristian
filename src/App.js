@@ -1,16 +1,12 @@
 import React from 'react';
-import NavBar from './componentes/NavBar.jsx';
-import { ItemListContainer } from './componentes/ItemListContainer.jsx';
+import NavBar from './componentes/navbar/NavBar.jsx';
+import { ItemListContainer } from './componentes/individualItems/ItemListContainer.jsx';
 import { Container,ThemeProvider } from '@mui/material';
 import {theme} from './theme.js';
-import {ItemDetailContainer} from './componentes/ItemDetailContainer.jsx';
+import {ItemDetailContainer} from './componentes/detail/ItemDetailContainer.jsx';
 import {BrowserRouter,Routes,Route, useParams} from "react-router-dom";
-import { LandingPage } from './componentes/landingPage.jsx';
 import {CartContextHOC} from './context/cartContext.jsx';
-import { Cart } from './componentes/cart.jsx';
-
-
-
+import { Cart } from './componentes/cart/cart.jsx';
 
 function App() {
 

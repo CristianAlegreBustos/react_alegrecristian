@@ -1,14 +1,10 @@
 import React from "react";
-import { ItemCount } from "./ItemCount.jsx";
 import { Card } from "@mui/material";
 import { CardMedia } from "@mui/material";
 import { CardContent } from "@mui/material";
 import { Typography } from "@mui/material";
 
 export function ItemCard({key,id, title, description, price, pictureURL,stock}){
-    const onAdd=(qtt)=>{
-        alert( `Agregando ${qtt} Items al Carrito`);
-    };
     return(
 <Card key={key} id={id} elevation={4} sx={{ maxWidth: 345}}>
         <CardMedia
@@ -28,13 +24,12 @@ export function ItemCard({key,id, title, description, price, pictureURL,stock}){
           {title}
           </Typography>
           <Typography gutterBottom variant="h5" component="div" sx={{textAlign:"center", fontWeight:800,color:'#ff1744'}}>
-           {price}
+           {`$ ${price}`}
           </Typography>
           
         </CardContent>         
 
-       {//  <ItemCount stock={stock} initial={0} onAdd={onAdd}>
-        //</ItemCount>
+       {
       }
       </Card>
     );
