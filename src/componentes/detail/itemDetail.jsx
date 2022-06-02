@@ -10,7 +10,7 @@ import { ButtonGroup,Button } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import { ItemCount } from './ItemCount';
 import {contextCart} from '../../context/cartContext.jsx';
-import { GetFirstPicture } from '../../library/library';
+import { GetFirstPicture,selectColor } from '../../library/library';
 import { CreateColorButtom,CreateTalleButtom } from './buttoms.jsx';
 import { CreateCardPicture } from './carousel.jsx';
 
@@ -43,6 +43,23 @@ function handleColor(e) {
  }
 
 /*************************/
+// Set the colorName of the shoes 
+
+function selectColor(productDetail,color){
+    debugger;
+    let colorName;
+    for( const key in productDetail.color){
+        if(key==color){
+            colorName= productDetail.color[color];
+        }
+        
+    }
+    return colorName;
+}
+
+/*************************/
+
+
 function verifyInitial(productId){
     let quantity= cart.map(element=>element.id == productId && element.quantity);
     debugger;
@@ -55,17 +72,20 @@ function verifyInitial(productId){
 
 function onAdd(quantityToAdd,productId,price,stock,thumbnail,productName){
     if (quantityToAdd <=stock){
+        debugger;
         let item={
             id:productId,
             product_Name:productName,
             quantity:quantityToAdd,
             price:price,
             stock:stock-quantityToAdd,
-            thumbImage:thumbnail
+            thumbImage:thumbnail,
+            talle:talle,
+            color: productDetail.color[color]
         }
         addItem(item)
-        alert(`You Added ${item.quantity} of the ${item.id}  to the Cart`)
     }else{
+        //Borrar Despues
         alert(`There is not enough stock for this article`)
     }
  }
@@ -135,7 +155,7 @@ return(
         <Box  sx={{display:'flex', flexDirection:'column',rowGap:2}}>
         <Typography color="white" sx={{fontSize:"1rem", fontWeight:"600"}}> { productDetail.stock>0 ? "Stock Disponible":"Stock No Disponible"}</Typography>
         </Box>
-     <ItemCount stock={productDetail.stock} initial={verifyInitial(productDetail.apiId)} onAdd={onAdd} productId={productDetail.apiId} price={productDetail.price} thumbnail={productDetail.img_thumbnail} productName={productDetail.title}></ItemCount>
+     <ItemCount stock={productDetail.stock} initial={verifyInitial} onAdd={onAdd} productId={productDetail.apiId} price={productDetail.price} thumbnail={productDetail.img_thumbnail} productName={productDetail.title} colorI={color} ></ItemCount>
       </CardContent>
      </Card>
         </>

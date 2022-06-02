@@ -5,6 +5,7 @@ export const contextCart = createContext(undefined);
 function CartContextHOC({children}){
 
     const [cart,setCart]=useState([])
+    const [orderID,setOrderId]=useState("")
 
     function isInCart(item){
         if (cart.includes(item)){
@@ -39,11 +40,15 @@ function CartContextHOC({children}){
     const clear= ()=>{
         setCart([]);
     }
+    
+    function getID(id){
+      setOrderId(id)
+    }
 
     return(
         <>
             <contextCart.Provider
-            value={{cart,addItem,removeItem,clear}}
+            value={{cart,addItem,removeItem,clear, getID,orderID}}
             >
                 {children}
             </contextCart.Provider>

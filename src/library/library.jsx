@@ -14,3 +14,4 @@ function capitalize(str) {
     return str.charAt(0).toUpperCase() + lower.slice(1);
   }
 
+

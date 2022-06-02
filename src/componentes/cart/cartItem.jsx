@@ -5,7 +5,7 @@ import { CardMedia,BottomNavigationAction } from '@mui/material';
 import {contextCart} from '../../context/cartContext.jsx';
 import { TableRow,TableCell } from '@mui/material';
 
-export function CartItem({thumbImage,detalle,nameProduct,price,cantidad,productId}){
+export function CartItem({thumbImage,detalle,nameProduct,price,cantidad,productId,color,talle}){
     const {removeItem}= useContext(contextCart);
     return(
         <TableRow sx={{'&:last-child td, &:last-child th': { border: 0 }}}
@@ -17,11 +17,17 @@ export function CartItem({thumbImage,detalle,nameProduct,price,cantidad,productI
                     height="80"
                     image= {thumbImage}
                     alt = {detalle}
-                    sx={{width:'50%', justifyContent:'center'}}
+                    sx={{width:'100%', justifyContent:'center'}}
                 /> 
             </TableCell>
             <TableCell component="th" scope="row">
                 <Typography>{nameProduct}</Typography>
+            </TableCell>
+            <TableCell component="th" scope="row">
+                <Typography>{talle}</Typography>
+            </TableCell>
+            <TableCell component="th" scope="row">
+                <Typography>{color}</Typography>
             </TableCell>
             <TableCell component="th" scope="row">
                 <Typography>{`$${price}`}</Typography>
