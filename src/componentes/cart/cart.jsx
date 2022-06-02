@@ -24,7 +24,7 @@ export function Cart(){
     
     return(
      <>
-        {/*cart.length===0 || cart===undefined ? <LandingPage message={'El Carrito esta vacio'} message2={'Comienza a Cargarlo Aqui'}>  </LandingPage> :*/
+        {cart.length===0 || cart===undefined ? <LandingPage message={'El Carrito esta vacio'} message2={'Comienza a Cargarlo Aqui'}>  </LandingPage> :
         <>
         <Box sx={{display:'flex', flexDirection:'row',alignItems:'center'}}>
         <CustomerForm></CustomerForm>
