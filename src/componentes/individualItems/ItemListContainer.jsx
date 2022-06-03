@@ -43,11 +43,11 @@ export function ItemListContainer({greeting}){
         <>
         {/* for desktop mode*/}
         <Box className='listContainer' sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', flexDirection:'row' ,justifyContent: 'space-evenly',alignItems: 'center',flexWrap:'wrap', rowGap:25,marginTop:20, mb:20} }}>
-        <ItemList productList={productList} loading={loading} error={error}></ItemList>
+        <ItemList productList={productList} loading={loading}></ItemList>
         </Box>
         {/* for responsive screens*/}
         <Box  className='listContainer' sx={{flexGrow:0, flexDirection:'column',display:{xs:'flex',flexDirection:'column' ,justifyContent: 'center',alignItems: 'center',md:'none'}}}>
-        <ItemList productList={productList} loading={loading} error={error}></ItemList>
+        <ItemList productList={productList} loading={loading}></ItemList>
         </Box>
         
         
