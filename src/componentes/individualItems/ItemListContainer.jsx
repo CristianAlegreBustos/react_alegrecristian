@@ -4,7 +4,7 @@ import React,{ useState,useEffect} from 'react';
 import Box from '@mui/material/Box';
 import { useParams } from 'react-router-dom';
 import { ItemList } from './itemList.jsx';
-import {collection,getDocs,getFirestore} from "firebase/firestore";
+import {collection,getDocs,getFirestore, query,where} from "firebase/firestore";
 
 export function ItemListContainer({greeting}){
     const [productList,setProductList]=useState([]);
@@ -16,14 +16,26 @@ export function ItemListContainer({greeting}){
     useEffect(()=>{
         setLoading(true);
         const db=getFirestore();
-        const productList=collection(db,"Products");
-        getDocs(productList).then((snapshot)=>{
-          if (snapshot.size===0){
+        if(categoryId === undefined){
+          const productList=collection(db,"Products");
+          getDocs(productList).then((snapshot)=>{
+            if (snapshot.size===0){
+              setLoading(false);
+            }
             setLoading(false);
-          }
-          setLoading(false);
-          setProductList(snapshot.docs.map((doc)=>({id:doc.id,...doc.data()})))
-        })
+            setProductList(snapshot.docs.map((doc)=>({id:doc.id,...doc.data()})))
+          })
+        }else{
+          const productList=query(collection(db,"Products"), where("categoryId","==",categoryId));
+          getDocs(productList).then((snapshot)=>{
+            if (snapshot.size===0){
+              setLoading(false);
+            }
+            setLoading(false);
+            setProductList(snapshot.docs.map((doc)=>({id:doc.id,...doc.data()})))
+          })
+        }
+        
         
       },[categoryId]);
 
