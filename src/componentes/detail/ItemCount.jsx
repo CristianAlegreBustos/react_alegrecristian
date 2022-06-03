@@ -157,7 +157,7 @@ CustomCountButton.propTypes = {
           </Typography>
           <CustomCountButtonRoot onClick={()=>setInit(init<stock? init+1: init)} size="small" sx={{fontSize:20,p:'10px 10px'}}>+</CustomCountButtonRoot>
         </Box>
-        <AddCarButton disabled={init===0?true:false}  onClick={()=>{onAdd(init,productId,price,stock,thumbnail, productName);changeDisplayButtom()}}  size="small"  sx={{ m:"0",p:"0"}}>Agregar al Carrito</AddCarButton>
+        <AddCarButton disabled={init===0?true:false}  onClick={()=>{onAdd(init,productId,price,stock,thumbnail,productName);changeDisplayButtom()}}  size="small"  sx={{ m:"0",p:"0"}}>Agregar al Carrito</AddCarButton>
         </CardActions>
          <Link to={`/cart`} style={{textDecoration:'none', display:`${displayAddButtom ? "none" : "flex"}`}}><AddCarButton  size="small" sx={{ m:"0",p:"0",display:`${displayAddButtom ? "none" : "block"}`}}>Ir al Carrito</AddCarButton></Link>
          </>
