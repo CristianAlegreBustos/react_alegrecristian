@@ -1,5 +1,5 @@
-import React, { useEffect, useState ,useContext} from 'react';
-import { Box, Typography } from "@mui/material";
+import React, {useContext} from 'react';
+import {Typography } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import { CardMedia,BottomNavigationAction } from '@mui/material';
 import {contextCart} from '../../context/cartContext.jsx';

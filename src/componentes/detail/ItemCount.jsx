@@ -7,7 +7,6 @@ import clsx from 'clsx';
 import { useButton } from '@mui/base/ButtonUnstyled';
 import { styled } from '@mui/system';
 import { Link } from 'react-router-dom';
-import { Button } from '@mui/material';
 
 export function ItemCount({stock,initial,onAdd,productId,price,thumbnail,productName}){
     //Create state initial = 1;

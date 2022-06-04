@@ -1,4 +1,4 @@
-import React ,{useState}from 'react';
+import React from 'react';
 import CardMedia from '@mui/material/CardMedia';
 
 export function CreateCardPicture(PictureList,setMainImage){

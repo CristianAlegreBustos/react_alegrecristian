@@ -1,4 +1,3 @@
-import React,{useEffect } from "react";
 import {getFirestore,collection,addDoc } from 'firebase/firestore';
 
 

@@ -9,7 +9,6 @@ import {collection,getDocs,getFirestore, query,where} from "firebase/firestore";
 export function ItemListContainer({greeting}){
     const [productList,setProductList]=useState([]);
     const[loading,setLoading]=useState(false);
-    const[error,setError]=useState("");
    
     const { categoryId } = useParams();
 

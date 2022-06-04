@@ -53,7 +53,6 @@ let navBar_Items = pages.map(page=>({text:page,url:`./${page}`,className:'navbar
 // funcion que crea el navbar
 function NavBar(){
   const {cart}= useContext(contextCart);
-  console.log(cart);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 

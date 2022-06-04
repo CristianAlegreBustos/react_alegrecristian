@@ -4,7 +4,7 @@ import { ItemListContainer } from './componentes/individualItems/ItemListContain
 import { Container,ThemeProvider } from '@mui/material';
 import {theme} from './theme.js';
 import {ItemDetailContainer} from './componentes/detail/ItemDetailContainer.jsx';
-import {BrowserRouter,Routes,Route, useParams} from "react-router-dom";
+import {BrowserRouter,Routes,Route} from "react-router-dom";
 import {CartContextHOC} from './context/cartContext.jsx';
 import { Cart } from './componentes/cart/cart.jsx';
 

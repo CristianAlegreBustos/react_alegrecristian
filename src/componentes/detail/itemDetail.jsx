@@ -46,7 +46,6 @@ function handleColor(e) {
 // Set the colorName of the shoes 
 
 function selectColor(productDetail,color){
-    debugger;
     let colorName;
     for( const key in productDetail.color){
         if(key==color){
@@ -57,22 +56,8 @@ function selectColor(productDetail,color){
     return colorName;
 }
 
-/*************************/
-
-
-function verifyInitial(productId){
-    let quantity= cart.map(element=>element.id == productId && element.quantity);
-    debugger;
-    if (quantity[0]>0){
-       return quantity[0];
-    }else{
-       return 0;
-    }
-}
-
 function onAdd(quantityToAdd,productId,price,stock,thumbnail,productName){
     if (quantityToAdd <=stock){
-        debugger;
         let item={
             id:productId,
             product_Name:productName,
@@ -155,8 +140,9 @@ return(
         <Box  sx={{display:'flex', flexDirection:'column',rowGap:2}}>
         <Typography color="white" sx={{fontSize:"1rem", fontWeight:"600"}}> { productDetail.stock>0 ? "Stock Disponible":"Stock No Disponible"}</Typography>
         </Box>
-     <ItemCount stock={productDetail.stock} initial={verifyInitial} onAdd={onAdd} productId={productDetail.apiId} price={productDetail.price} thumbnail={productDetail.img_thumbnail} productName={productDetail.title} colorI={color} ></ItemCount>
+        <ItemCount stock={productDetail.stock} initial={0} onAdd={onAdd} productId={productDetail.apiId} price={productDetail.price} thumbnail={productDetail.img_thumbnail} productName={productDetail.title} colorI={color} ></ItemCount>
       </CardContent>
+     
      </Card>
         </>
     )

@@ -8,10 +8,5 @@ export function GetFirstPicture(listPicture){
     }}
 }
 
-// capitalize string
-function capitalize(str) {
-    const lower = str.toLowerCase();
-    return str.charAt(0).toUpperCase() + lower.slice(1);
-  }
 
 

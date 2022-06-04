@@ -1,4 +1,4 @@
-import React,{ useContext,createContext, useState } from "react";
+import React,{createContext, useState } from "react";
 
 export const contextCart = createContext(undefined);
 
@@ -7,23 +7,25 @@ function CartContextHOC({children}){
     const [cart,setCart]=useState([])
     const [orderID,setOrderId]=useState("")
 
-    function isInCart(item){
-        if (cart.includes(item)){
-            return true;
-        }else{
-            return false;
-        }
+    function isInCart( id ){
+      return cart.some( _item => _item.id === id);
     }
 
     const addItem = ( item ) => {
-        if ( isInCart(item) ) {
+      debugger;
+        if ( isInCart(item.id) ) {
+          debugger;
           const newCart = cart.reduce((acc, _item) => {
+            debugger;
             if(item.id !== _item.id) {
+              debugger;
               return acc.concat(_item);
             } else {
+              debugger;
               return acc.concat({ ..._item, quantity: _item.quantity + item.quantity});
             }
           }, []);
+          debugger;
           setCart(newCart);
           return;
         }
