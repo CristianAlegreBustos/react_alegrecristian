@@ -40,7 +40,9 @@ function CartContextHOC({children}){
     }
 
     const clear= ()=>{
-        setCart([]);
+        setCart([{
+          quantity:0,
+          price:0}]);
     }
     
     function getID(id){

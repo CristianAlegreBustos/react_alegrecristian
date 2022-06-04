@@ -13,18 +13,19 @@ import { finishOrder } from '../../library/sendToFirebase.jsx';
 
 export function Cart(){
     const {cart,clear, getID,orderID}= useContext(contextCart);
-
+    console.log(orderID)
     function clientData(){
         //this elemets are in the customerForm
         let clientName=document.getElementById("clientName").value;
         let clientPhone=document.getElementById("clientPhone").value;
         let clientEmail=document.getElementById("clientEmail").value;
         finishOrder(clientName,clientPhone,clientEmail,cart, getID);
+        clear();
     }
     
     return(
      <>
-        {cart.length===0 || cart===undefined ? <LandingPage message={'El Carrito esta vacio'} message2={'Comienza a Cargarlo Aqui'}>  </LandingPage> :
+        {cart.length===0 || cart===undefined ?  <LandingPage message={'El Carrito esta vacio'} message2={'Comienza a Cargarlo Aqui'}>  </LandingPage> :
         <>
         <Box sx={{display:'flex', flexDirection:'row',alignItems:'center'}}>
         <CustomerForm></CustomerForm>
@@ -34,7 +35,7 @@ export function Cart(){
                     <ColumnCartName></ColumnCartName>
                  </TableHead>
                  <TableBody sx={{marginTop:2}}>
-                 {cart !== 0 && cart.map((product)=>
+                 {cart !== 0 && cart.map((product)=>product.id !==undefined &&
                     <CartItem key={product.id} thumbImage={product.thumbImage} detalle={product.product_Name} nameProduct={product.product_Name} price={product.price} cantidad={product.quantity} productId={product.id} color={product.color} talle={product.talle}></CartItem>
                   )}
                  </TableBody>
@@ -42,7 +43,7 @@ export function Cart(){
             <Box sx={{bgcolor:'orange',color:'#1976d2',display:'flex',flexDirection:'column',alignItems:'center',gap:2,padding:2}}>
                     <Box sx={{display:'flex', flexDirection:'row',gap:2}}>
                     <Typography align="center" fontWeight={700}>
-                     {cart.length>0 && `Productos Totales ${cart.map(product=>product.quantity).reduce((num1,num2)=>num1+num2)}`}
+                     {cart.length>0  && `Productos Totales ${cart.map(product=>product.quantity).reduce((num1,num2)=>num1+num2 )}`}
                     </Typography>
                     <Typography align="center" fontWeight={700}>
                      {cart.length>0 && `Precio Total $ ${cart.map(product=>product.price*product.quantity).reduce((num1,num2)=>num1+num2)}`}
@@ -56,7 +57,7 @@ export function Cart(){
             <Button style={{borderRightColor:'white'}} onClick={()=>clear()} sx={{'&:hover':{bgcolor:'gray', color:'red',fontSize:'0.9rem'} ,bgcolor:'red',color:'white',border:2,borderColor:'white',p:2}} > Vaciar Carrito</Button>
             <Button onClick={()=>clientData()} sx={{'&:hover':{bgcolor:'green', color:'white',fontSize:'0.9rem' } ,bgcolor:'white',color:'red',border:2,borderColor:'orangered', p:2}} > Terminar Compra</Button>
         </ButtonGroup>
-       
+           
         </Box>
         {orderID&& `El pedido fue echo. El id de su compra es ${orderID}` }
         </>

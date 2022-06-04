@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ItemDetail } from './itemDetail.jsx';
 import { Box } from '@mui/material';
 import { useParams } from 'react-router-dom';
