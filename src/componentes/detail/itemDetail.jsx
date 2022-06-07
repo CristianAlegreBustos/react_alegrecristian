@@ -123,7 +123,7 @@ return(
             {`$ ${productDetail.price}`}
             </Typography>
             <Typography  color="white" sx={{display:'flex',fontWeight:500,fontSize:'1.2rem'}}>
-            {`en 12  $${(productDetail.price*1.5862)/12}`}
+            {`en 12  $${parseFloat((productDetail.price*1.5862)/12).toFixed(2)}`}
             </Typography>
         </Box>
         <Box sx={{display:'Flex', flexDirection:'column',gap:1}}> 
