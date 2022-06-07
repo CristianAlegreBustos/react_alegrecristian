@@ -84,7 +84,6 @@ function onAdd(quantityToAdd,productId,price,stock,thumbnail,productName){
 
 
 return(
-   
         <>
     {loading ? <LandingPage message={"Loading..."}> </LandingPage>:
     <Card sx={{display:'flex', flexDirection:'row',justifyContent:'space-between'}}>
