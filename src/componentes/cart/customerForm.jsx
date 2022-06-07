@@ -25,7 +25,7 @@ export function CustomerForm({verifyData}){
     }
 
     function verifyEmail(event){
-        const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+        const regex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g;
         if (!regex.test(event.target.value)) {
             setMatchEmailPattern(true);//error
             setDataValid(false);

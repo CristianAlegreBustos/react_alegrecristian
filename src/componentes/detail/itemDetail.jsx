@@ -13,6 +13,7 @@ import { GetFirstPicture,selectColor } from '../../library/library';
 import { CreateColorButtom,CreateTalleButtom } from './buttoms.jsx';
 import { CreateCardPicture } from './carousel.jsx';
 import { ItemCount } from './ItemCount.jsx';
+import { LandingPage } from '../landingPages/landingPage.jsx';
 
 export function ItemDetail({productDetail,loading,error}){
     const {addItem,cart}= useContext(contextCart);
@@ -51,7 +52,7 @@ function handleColor(e) {
 function selectColor(productDetail,color){
     let colorName;
     for( const key in productDetail.color){
-        if(key==color){
+        if(key===`${color}`){
             colorName= productDetail.color[color];
         }
     }
@@ -85,18 +86,18 @@ function onAdd(quantityToAdd,productId,price,stock,thumbnail,productName){
 return(
    
         <>
-    {loading && "loading..."}
+    {loading ? <LandingPage message={"Loading..."}> </LandingPage>:
     <Card sx={{display:'flex', flexDirection:'row',justifyContent:'space-between'}}>
     
      <CardContent  sx={{display:'flex', flexDirection:'column',width:'100%'}}>
             <CardMedia
                 component="img"
                 height="500"
-                image= {mainImage||color==0 && GetFirstPicture(productDetail.picture0)||color==1 && GetFirstPicture(productDetail.picture1)||color==2 && GetFirstPicture(productDetail.picture2)}
+                image= {`${mainImage||color==0 && GetFirstPicture(productDetail.picture0)||color==1 && GetFirstPicture(productDetail.picture1)||color==2 && GetFirstPicture(productDetail.picture2)}`}
                 alt = {productDetail.title}
             /> 
             <CardContent sx={{display:'flex', flexDirection:'row',gap:1,overflow:'clip',paddingLeft:0,paddingRight:0}} >
-                    {color==0 && CreateCardPicture(productDetail.picture0,setMainImage)}
+                    {color == 0 && CreateCardPicture(productDetail.picture0,setMainImage)}
                     {color == 1 && CreateCardPicture(productDetail.picture1,setMainImage)}
                     {color == 2 && CreateCardPicture(productDetail.picture2,setMainImage)}
             </CardContent>
@@ -154,6 +155,7 @@ return(
       </CardContent>
      
      </Card>
+     }
         </>
     )
 }

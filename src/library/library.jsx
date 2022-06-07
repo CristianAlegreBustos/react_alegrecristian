@@ -3,7 +3,7 @@
 
 
 export function GetFirstPicture(listPicture){
-    for(const key in listPicture){if (key==0){
+    for(const key in listPicture){if (key==='0'){
         return listPicture[key];        
     }}
 }

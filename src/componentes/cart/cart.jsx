@@ -1,4 +1,4 @@
-import React, {useContext,useEffect,useState } from 'react';
+import React, {useContext,useState } from 'react';
 import {contextCart} from '../../context/cartContext.jsx';
 import { CartItem } from './cartItem.jsx';
 import { ButtonGroup, Paper, Typography } from '@mui/material';
@@ -16,18 +16,16 @@ export function Cart(){
     const [allData,setAllData]=useState(true);//In this case true means button disabled.
 
 function verifyData(validData){
-    debugger;
         let clientName=document.getElementById("clientName");
         let clientPhone=document.getElementById("clientPhone");
         let clientEmail=document.getElementById("clientEmail");
-        console.log(validData)
+     
         if (clientName !== null && clientPhone !== null && clientName !== null ){
             if (clientName.value==="" ||clientPhone.value===""  ||clientEmail.value===""||  validData===false){
                 setAllData(true);
-                console.log(validData)
+              
             }else{
                 setAllData(false);
-                console.log(validData)
             }
         }
         
