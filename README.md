@@ -1,6 +1,5 @@
 # `Project Description:` 
-
-![](public%5CShoppingCart.gif)
+![ShoppingCart](https://user-images.githubusercontent.com/83523962/172286469-da30abb3-380b-4360-9cc6-e307d82d4445.gif)
 
 The pourpuse of this project is to desing a Shopping Cart using a real catalog, a detail of the product, a summary of the shopping cart and a customer form to complete de shopping order. The orders are stored in the same database where the catalogue is stored. 
 
