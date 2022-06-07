@@ -14,25 +14,25 @@ The project is stored the catalgue and the customers orders in the firestore dat
 Below, in the section "Install the necessary dependencies", I specify the different way to set up the different package, but it's important to know tha first you need to install NODE JS. 
 
 ## Characteristics of the Project: 
-    The project achieved the different assingnaments of the instructor. 
+The project achieved the different assingnaments of the instructor. 
 
-    In the Detail of the product also show the size and color available. When you clicked over a color, the picture change to the corresponding color. It was very challenged to achieved this because firestore working with noSQL database. 
-    
-    If a customer add twice a product in the Shopping Cart there is a function that join the two item in one, adding their quantities. This method uses Mercado Libre on its website. I think it's important that customers "feel free" to hit the "add to cart" button as many times as they want, instead of just once.
+In the Detail of the product also show the size and color available. When you clicked over a color, the picture change to the corresponding color. It was very challenged to achieved this because firestore working with noSQL database. 
 
-    However, the customer have to select the size, color and quantity before to add the product to the cart. 
+If a customer add twice a product in the Shopping Cart there is a function that join the two item in one, adding their quantities. This method uses Mercado Libre on its website. I think it's important that customers "feel free" to hit the "add to cart" button as many times as they want, instead of just once.
 
-    I render the customer form in the same view where I render the cart detail. I do that because it's important that the customers click as little as possible to finish the shop. 
+However, the customer have to select the size, color and quantity before to add the product to the cart. 
 
-    The necessary verification are set up. The customer can delete the product individualy and clean the complete shopping cart. 
+I render the customer form in the same view where I render the cart detail. I do that because it's important that the customers click as little as possible to finish the shop. 
 
-    When the customer finish the purchase, the cart and the form are cleaned, the order is submited to the database and the ID order is rendered in the view. El ID es el ID del documents created in firebase. 
+The necessary verification are set up. The customer can delete the product individualy and clean the complete shopping cart. 
+
+When the customer finish the purchase, the cart and the form are cleaned, the order is submited to the database and the ID order is rendered in the view. El ID es el ID del documents created in firebase. 
 
 ### Details to Improve
 
-    Complete the responsive. Not all the componentes are responsive, but this will change in the future. 
+Complete the responsive. Not all the componentes are responsive, but this will change in the future. 
 
-    Show the Size and Color buttons that the customer select like active.Actually is only focused.
+Show the Size and Color buttons that the customer select like active.Actually is only focused.
 
 
 # `Install the necessary dependencies:` 
