@@ -8,22 +8,25 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import { ButtonGroup,Button } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import { ItemCount } from './ItemCount';
 import {contextCart} from '../../context/cartContext.jsx';
 import { GetFirstPicture,selectColor } from '../../library/library';
 import { CreateColorButtom,CreateTalleButtom } from './buttoms.jsx';
 import { CreateCardPicture } from './carousel.jsx';
-
+import { ItemCount } from './ItemCount.jsx';
 
 export function ItemDetail({productDetail,loading,error}){
     const {addItem,cart}= useContext(contextCart);
     const theme = useTheme();
     const [mainImage,setMainImage]=useState();
+    const [talleMessage,setTalleMessage]=useState();
+    const [alertStockMessage,setAlertStock]=useState();
     //To the like buttom, (heart)
     const [value, setValue] = React.useState('recents');
 
+    
+
 const handleChange = (event, newValue) => {
-    setValue(newValue);
+    setValue(newValue); 
   };
 
 // Set the Size of the shoes in the Talle
@@ -51,28 +54,31 @@ function selectColor(productDetail,color){
         if(key==color){
             colorName= productDetail.color[color];
         }
-        
     }
     return colorName;
 }
 
 function onAdd(quantityToAdd,productId,price,stock,thumbnail,productName){
-    if (quantityToAdd <=stock){
-        let item={
-            id:productId,
-            product_Name:productName,
-            quantity:quantityToAdd,
-            price:price,
-            stock:stock-quantityToAdd,
-            thumbImage:thumbnail,
-            talle:talle,
-            color: productDetail.color[color]
-        }
-        addItem(item)
+    if (talle===undefined){
+        setTalleMessage('Seleccione un talle para continuar')
     }else{
-        //Borrar Despues
-        alert(`There is not enough stock for this article`)
-    }
+        if (quantityToAdd <=stock){
+            let item={
+                id:productId,
+                product_Name:productName,
+                quantity:quantityToAdd,
+                price:price,
+                stock:stock-quantityToAdd,
+                thumbImage:thumbnail,
+                talle:talle,
+                color: productDetail.color[color]
+            }
+            addItem(item)
+        }else{
+            setAlertStock(`There is not enough stock for this article`)
+        }
+    }   
+    
  }
 
 
@@ -124,23 +130,27 @@ return(
             <Typography  color="white" sx={{display:'flex',fontWeight:"600",fontSize:'1rem'}}>
                 {`Talle: ${talle}`}
             </Typography>
+           
             <ButtonGroup variant="outlined" aria-label="outlined button group" sx={{displa:'flex',flexWrap:'wrap',gap:1,alignContent:'center'}} >
                 {CreateTalleButtom(productDetail.talle,handleInput)}
             </ButtonGroup>
+
+            {talle===""&& <Typography sx={{color:'red', fontWeight:"600"}} >Para continuar debes elegir un talle</Typography>}
         </Box>
-        <Box sx={{display:'flex', flexDirection:'row',gap:2}}>
-            <Typography color="white" sx={{fontSize:"1rem", fontWeight:"400"}}> {`Color:`}</Typography>
+        <Box sx={{display:'flex', flexDirection:'column',gap:2}}>
+            <Typography color="white" sx={{fontSize:"1rem", fontWeight:"600"}}> {`Color: ${selectColor(productDetail,color)}`}</Typography>
             <Box sx={{display:'flex',flexDirection:'column', rowGap:2}}>
             <ButtonGroup variant="outlined" aria-label="outlined button group"sx={{display:'flex',flexDirection:'row', gap:2}}>
                 {CreateColorButtom(productDetail.color,handleColor)}
             </ButtonGroup>
+            {<Typography sx={{color:'red', fontWeight:"600"}} >Elige el color que mas te guste</Typography>}
             </Box>
         </Box>    
         
         <Box  sx={{display:'flex', flexDirection:'column',rowGap:2}}>
         <Typography color="white" sx={{fontSize:"1rem", fontWeight:"600"}}> { productDetail.stock>0 ? "Stock Disponible":"Stock No Disponible"}</Typography>
         </Box>
-        <ItemCount stock={productDetail.stock} initial={0} onAdd={onAdd} productId={productDetail.apiId} price={productDetail.price} thumbnail={productDetail.img_thumbnail} productName={productDetail.title} colorI={color} ></ItemCount>
+        <ItemCount stock={productDetail.stock} initial={0} onAdd={onAdd} productId={productDetail.apiId} price={productDetail.price} thumbnail={productDetail.img_thumbnail} productName={productDetail.title} colorI={color} talle={talle}></ItemCount>
       </CardContent>
      
      </Card>

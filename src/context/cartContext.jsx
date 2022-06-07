@@ -12,20 +12,20 @@ function CartContextHOC({children}){
     }
 
     const addItem = ( item ) => {
-      debugger;
+      
         if ( isInCart(item.id) ) {
-          debugger;
+          
           const newCart = cart.reduce((acc, _item) => {
-            debugger;
+            
             if(item.id !== _item.id) {
-              debugger;
+              
               return acc.concat(_item);
             } else {
-              debugger;
+              
               return acc.concat({ ..._item, quantity: _item.quantity + item.quantity});
             }
           }, []);
-          debugger;
+          
           setCart(newCart);
           return;
         }

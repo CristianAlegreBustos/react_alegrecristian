@@ -8,15 +8,15 @@ import { useButton } from '@mui/base/ButtonUnstyled';
 import { styled } from '@mui/system';
 import { Link } from 'react-router-dom';
 
-export function ItemCount({stock,initial,onAdd,productId,price,thumbnail,productName}){
+export function ItemCount({stock,initial,onAdd,productId,price,thumbnail,productName,talle}){
     //Create state initial = 1;
 const [init, setInit] = useState(initial);
 const [displayAddButtom, setAddButtom] = useState(true);
 
 function changeDisplayButtom() {
-  setAddButtom(false);
-}
+setAddButtom(false);
 
+}
 //color
 const red = {
   500: '#ff1744',
@@ -156,7 +156,7 @@ CustomCountButton.propTypes = {
           </Typography>
           <CustomCountButtonRoot onClick={()=>setInit(init<stock? init+1: init)} size="small" sx={{fontSize:20,p:'10px 10px'}}>+</CustomCountButtonRoot>
         </Box>
-        <AddCarButton disabled={init===0?true:false}  onClick={()=>{onAdd(init,productId,price,stock,thumbnail,productName);changeDisplayButtom()}}  size="small"  sx={{ m:"0",p:"0"}}>Agregar al Carrito</AddCarButton>
+        <AddCarButton disabled={talle!=="" && init !==0 ?false:true}  onClick={()=>{onAdd(init,productId,price,stock,thumbnail,productName);changeDisplayButtom()}}  size="small"  sx={{ m:"0",p:"0"}}>Agregar al Carrito</AddCarButton>
         </CardActions>
          <Link to={`/cart`} style={{textDecoration:'none', display:`${displayAddButtom ? "none" : "flex"}`}}><AddCarButton  size="small" sx={{ m:"0",p:"0",display:`${displayAddButtom ? "none" : "block"}`}}>Ir al Carrito</AddCarButton></Link>
          </>

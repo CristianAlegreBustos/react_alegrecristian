@@ -1,4 +1,4 @@
-import React, {useContext } from 'react';
+import React, {useContext,useEffect,useState } from 'react';
 import {contextCart} from '../../context/cartContext.jsx';
 import { CartItem } from './cartItem.jsx';
 import { ButtonGroup, Paper, Typography } from '@mui/material';
@@ -13,7 +13,26 @@ import { finishOrder } from '../../library/sendToFirebase.jsx';
 
 export function Cart(){
     const {cart,clear, getID,orderID}= useContext(contextCart);
-    console.log(orderID)
+    const [allData,setAllData]=useState(true);//In this case true means button disabled.
+
+function verifyData(validData){
+    debugger;
+        let clientName=document.getElementById("clientName");
+        let clientPhone=document.getElementById("clientPhone");
+        let clientEmail=document.getElementById("clientEmail");
+        console.log(validData)
+        if (clientName !== null && clientPhone !== null && clientName !== null ){
+            if (clientName.value==="" ||clientPhone.value===""  ||clientEmail.value===""||  validData===false){
+                setAllData(true);
+                console.log(validData)
+            }else{
+                setAllData(false);
+                console.log(validData)
+            }
+        }
+        
+    };
+
     function clientData(){
         //this elemets are in the customerForm
         let clientName=document.getElementById("clientName").value;
@@ -21,6 +40,9 @@ export function Cart(){
         let clientEmail=document.getElementById("clientEmail").value;
         finishOrder(clientName,clientPhone,clientEmail,cart, getID);
         clear();
+        document.getElementById("clientName").value="";
+        document.getElementById("clientPhone").value="";
+        document.getElementById("clientEmail").value="";
     }
     
     return(
@@ -28,7 +50,7 @@ export function Cart(){
         {cart.length===0 || cart===undefined ?  <LandingPage message={'El Carrito esta vacio'} message2={'Comienza a Cargarlo Aqui'}>  </LandingPage> :
         <>
         <Box sx={{display:'flex', flexDirection:'row',alignItems:'center'}}>
-        <CustomerForm></CustomerForm>
+        <CustomerForm verifyData={verifyData}></CustomerForm>
         <TableContainer component={Paper} sx={{marginTop:2}}>
             <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                 <TableHead>
@@ -55,7 +77,7 @@ export function Cart(){
         <Box sx={{display:'flex',  justifyContent:'center'}}>
         <ButtonGroup sx={{gap:2}}>
             <Button style={{borderRightColor:'white'}} onClick={()=>clear()} sx={{'&:hover':{bgcolor:'gray', color:'red',fontSize:'0.9rem'} ,bgcolor:'red',color:'white',border:2,borderColor:'white',p:2}} > Vaciar Carrito</Button>
-            <Button onClick={()=>clientData()} sx={{'&:hover':{bgcolor:'green', color:'white',fontSize:'0.9rem' } ,bgcolor:'white',color:'red',border:2,borderColor:'orangered', p:2}} > Terminar Compra</Button>
+            <Button  disabled={allData}  onClick={()=>clientData()} sx={{'&:hover':{bgcolor:'green', color:'white',fontSize:'0.9rem' } ,bgcolor:'white',color:'red',border:2,borderColor:'orangered', p:2}} > Terminar Compra</Button>
         </ButtonGroup>
            
         </Box>
