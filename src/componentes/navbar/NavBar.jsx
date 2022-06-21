@@ -71,15 +71,15 @@ function NavBar(){
     setAnchorElUser(null);
   };
     return (
-      <AppBar color='secondary' position='static'>
-        <Container maxWidth="xl">
+      <AppBar color='secondary' position='static'  >
+        <Container maxWidth="xl" sx={{paddingLeft:"1%",paddingRight:"1%"}}>
           <Toolbar disableGutters className='Toolbar' sx={{ 
             display:{md:'flex'}
           }}>
           
         
           {/* for responsive screens*/}
-          <Box  sx={{flexGrow:0, flexDirection:'row',justifyContent:'space-evenly',alignContent:'center',alignItems:'center',alignSelf:'center',columnGap:8,display:{xs:'flex',md:'none'}}}>
+          <Box  sx={{flexGrow:0, flexDirection:'row',justifyContent:'space-evenly',alignContent:'center',alignItems:'center',alignSelf:'center',width:'100%',display:{xs:'flex',md:'none'}}}>
           <IconButton
               size="large"
               aria-label="account of current user"
@@ -87,6 +87,7 @@ function NavBar(){
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
               color="inherit"
+              sx={{borderRadius:"0",padding:"0%"}}
             >
               <MenuIcon />
             </IconButton> 
@@ -112,7 +113,7 @@ function NavBar(){
               {navBar_Items.map(function(item,index){
                 return (
                     <MenuItem  key={item.objectId}  onClick={handleCloseNavMenu} sx={{
-                      fontWeight:700,
+                      fontWeight:400,
                     }}>
                     <Link  key={index} to={encodeURI(item.categoryId)}><Typography color="primary" textAlign="center">{item.text}</Typography></Link> 
                     </MenuItem>
@@ -121,7 +122,7 @@ function NavBar(){
             </Menu>
             <LocalFireDepartmentIcon color='primary' sx={{ 
             display: { xs: 'flex', md: 'none' }, 
-            mr: 0.5 }} >
+            mr: 0 }} >
             </LocalFireDepartmentIcon>
         
             <Link to={'/'} style={{textDecoration:'none'}}><Typography
@@ -133,8 +134,8 @@ function NavBar(){
               display: { xs: 'flex', md: 'none' },
               flexGrow: 1,
               fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
+              fontWeight: 500,
+              letterSpacing: '.0.5rem',
               textDecoration: 'none',
             }}
           >
@@ -142,17 +143,19 @@ function NavBar(){
           </Typography></Link>
           <Cart quantity={cart!== undefined && cart.length> 0 && cart.map(product=>product.quantity).reduce((num1,num2)=>num1+num2)}></Cart>
           <Button variant='contained' className='navbarItem_registrar'  startIcon={<LockIcon/>} sx={{ my: 1.5,justifyContent:'center',
-           boxShadow:3, display: 'flex' }}></Button>
+           boxShadow:3, display: 'flex',minWidth:'1%', width:'5%', ".css-1d6wzja-MuiButton-startIcon":{marginRight:'0',marginLeft:'0'} }}></Button>
 
            
            <Button variant='contained' className='navbarItem_ingresar'  startIcon={<LoginIcon/>}  sx={{ my: 1.5,justifyContent:'center', 
             boxShadow:3,
-            display: 'flex' }}></Button>
+            display: 'flex',minWidth:'1%', width:'5%' }}></Button>
           </Box>
 
 
           {/* for desktop mode*/}
-          <Box   sx={{flexGrow:1, display:{xs:'none',md:'flex', flexDirection:'row',justifyContent:'space-evenly',alignContent:'center',alignItems:'center'}}}>
+          <Box   sx={{flexGrow:1, display:{xs:'none',md:'flex', flexDirection:'row',justifyContent:'space-evenly',alignContent:'center',alignItems:'center',
+        ".css-1d6wzja-MuiButton-startIcon":{marginRight:'0',marginLeft:'0'}
+        }}}>
           <Box sx={{display:'flex', flexDirection:'row', alignItems:'center' }}>
           <LocalFireDepartmentIcon color='primary' className='FireIcon'
           sx={{

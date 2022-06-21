@@ -35,7 +35,7 @@ const AddCarButtonRoot = styled('button')`
   transition: all 150ms ease;
   cursor: pointer;
   border: none;
-  margin:0.5rem;
+  margin:0rem;
   &:hover {
     background-color: ${red[600]};
   }
@@ -147,7 +147,7 @@ CustomCountButton.propTypes = {
 };
     return(   
       <>                                                         
-        <CardActions sx={{flexDirection:'row',columnGap:5, display:`${displayAddButtom ? "flex" : "none"}`}}>
+        <CardActions sx={{flexDirection:'row',columnGap:1, display:`${displayAddButtom ? "flex" : "none"}`}}>
         <Box  sx={{display:'flex', flexDirection:'row' ,alignItems:'center',columnGap:1.5}}>
           <CustomCountButtonRoot onClick={()=>setInit( init>0 ? init-1 : 0 )} size="small" sx={{fontSize:20}}
          >-</CustomCountButtonRoot>

@@ -45,7 +45,7 @@ export function ItemListContainer({greeting}){
         <ItemList productList={productList} loading={loading}></ItemList>
         </Box>
         {/* for responsive screens*/}
-        <Box  className='listContainer' sx={{flexGrow:0, flexDirection:'column',display:{xs:'flex',flexDirection:'column' ,justifyContent: 'center',alignItems: 'center',md:'none'}}}>
+        <Box  className='listContainer' sx={{flexGrow:0, flexDirection:'column',display:{xs:'flex',flexDirection:'column' ,justifyContent: 'space-evenly',alignItems: 'center',md:'none'}}}>
         <ItemList productList={productList} loading={loading}></ItemList>
         </Box>
         
