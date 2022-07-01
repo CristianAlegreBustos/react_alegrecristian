@@ -8,7 +8,7 @@ import { useButton } from '@mui/base/ButtonUnstyled';
 import { styled } from '@mui/system';
 import { Link } from 'react-router-dom';
 
-export function ItemCount({stock,initial,onAdd,productId,price,thumbnail,productName,talle}){
+export function  ItemCount({stock,initial,onAdd,productId,price,thumbnail,productName,talle}){
     //Create state initial = 1;
 const [init, setInit] = useState(initial);
 const [displayAddButtom, setAddButtom] = useState(true);
@@ -147,7 +147,7 @@ CustomCountButton.propTypes = {
 };
     return(   
       <>                                                         
-        <CardActions sx={{flexDirection:'row',columnGap:1, display:`${displayAddButtom ? "flex" : "none"}`}}>
+        <CardActions sx={{flexDirection:'row',columnGap:1,justifyContent:'space-evenly', display:`${displayAddButtom ? "flex" : "none"}`}}>
         <Box  sx={{display:'flex', flexDirection:'row' ,alignItems:'center',columnGap:1.5}}>
           <CustomCountButtonRoot onClick={()=>setInit( init>0 ? init-1 : 0 )} size="small" sx={{fontSize:20}}
          >-</CustomCountButtonRoot>

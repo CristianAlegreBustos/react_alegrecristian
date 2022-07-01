@@ -8,7 +8,7 @@ export function CreateCardPicture(PictureList,setMainImage){
             <CardMedia
                 key={key}
                 component="img"
-                height="150"
+                height="90"
                 image= {PictureList[key]}
                 alt = "Detail of Shoes"
                 onMouseEnter={()=>setMainImage(PictureList[key])}

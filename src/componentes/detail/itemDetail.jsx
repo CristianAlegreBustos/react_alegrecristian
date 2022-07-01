@@ -85,13 +85,15 @@ function onAdd(quantityToAdd,productId,price,stock,thumbnail,productName){
 
 return(
         <>
+        {/* for desktop mode*/}
     {loading ? <LandingPage message={"Loading..."}> </LandingPage>:
-    <Card sx={{display:'flex', flexDirection:'row',justifyContent:'space-between'}}>
-    
+   <>
+   <Card sx={{display:{md:'flex',xs:'none'}, flexDirection:'row',justifyContent:'space-between'}}>
      <CardContent  sx={{display:'flex', flexDirection:'column',width:'100%'}}>
             <CardMedia
                 component="img"
                 height="500"
+                sx={{objectFit:"fill"}}
                 image= {`${mainImage||color==0 && GetFirstPicture(productDetail.picture0)||color==1 && GetFirstPicture(productDetail.picture1)||color==2 && GetFirstPicture(productDetail.picture2)}`}
                 alt = {productDetail.title}
             /> 
@@ -153,8 +155,82 @@ return(
         <ItemCount stock={productDetail.stock} initial={0} onAdd={onAdd} productId={productDetail.apiId} price={productDetail.price} thumbnail={productDetail.img_thumbnail} productName={productDetail.title} colorI={color} talle={talle}></ItemCount>
       </CardContent>
      
+    </Card>
+
+    {/*for responsive screen*/}
+
+    <Card sx={{display:{md:'none',xs:'flex'}, flexDirection:'column',justifyContent:'space-between',width:'100%',marginTop:'5%',marginBottom:'5%'}}>
+
+    <CardContent sx={{display:'flex', flexDirection:'column', justifyContent:'space-between',margin: 'auto'}}>
+        <Box>
+            <Typography color="whitesmoke" sx={{display:'flex',fontWeight:400,fontSize:'0.875rem'}}>
+            {`${productDetail.condition==="nuevo"? "Nuevo": "Usado"} | ${productDetail.sold_quantity} vendidos`}
+            </Typography>
+            <Box sx={{display:'Flex',justifyContent:'center'}}>
+                <Typography variant="h5" color="white" sx={{display:'flex',fontWeight:700,fontSize:'1.375rem'}}>
+                {productDetail.title}
+                </Typography>
+                <BottomNavigationAction
+                    label="Favorites"
+                    value="favorites"
+                    sx={{m:0, p:0, pt:0, color:'#ff1744'}} 
+                    icon={<FavoriteIcon  />}
+                />
+            </Box>
+        </Box>
+        <Box sx={{display:'flex', gap:'3%',justifyContent:'center'}} >
+            <Typography variant="h4" color="whitesmoke" sx={{display:'flex',fontWeight:300,fontSize:'2.25rem'}}>
+            {`$ ${productDetail.price}`}
+            </Typography>
+            <Typography  color="white" sx={{display:'flex',fontWeight:500,fontSize:'1.2rem'}}>
+            {`en 12  $${parseFloat((productDetail.price*1.5862)/12).toFixed(2)}`}
+            </Typography>
+        </Box>
+        <Box sx={{display:'Flex', flexDirection:'column',gap:1}}> 
+            <Typography  color="white" sx={{display:'flex',fontWeight:"600",fontSize:'1rem'}}>
+                {`Talle: ${talle}`}
+            </Typography>
+           
+            <ButtonGroup variant="outlined" aria-label="outlined button group" sx={{displa:'flex',flexWrap:'wrap',gap:1,alignContent:'center'}} >
+                {CreateTalleButtom(productDetail.talle,handleInput)}
+            </ButtonGroup>
+
+            {talle===""&& <Typography sx={{color:'red', fontWeight:"600"}} >Para continuar debes elegir un talle</Typography>}
+        </Box>
+        <Box sx={{display:'flex', flexDirection:'column',gap:2}}>
+            <Typography color="white" sx={{fontSize:"1rem", fontWeight:"600"}}> {`Color: ${selectColor(productDetail,color)}`}</Typography>
+            <Box sx={{display:'flex',flexDirection:'column', rowGap:2}}>
+            <ButtonGroup variant="outlined" aria-label="outlined button group"sx={{display:'flex',flexDirection:'row', gap:2}}>
+                {CreateColorButtom(productDetail.color,handleColor)}
+            </ButtonGroup>
+            {<Typography sx={{color:'red', fontWeight:"600"}} >Elige el color que mas te guste</Typography>}
+            </Box>
+        </Box>    
+        
+        <Box  sx={{display:'flex', flexDirection:'column',rowGap:2}}>
+        <Typography color="white" sx={{fontSize:"1rem", fontWeight:"600"}}> { productDetail.stock>0 ? "Stock Disponible":"Stock No Disponible"}</Typography>
+        </Box>
+        <ItemCount stock={productDetail.stock} initial={0} onAdd={onAdd} productId={productDetail.apiId} price={productDetail.price} thumbnail={productDetail.img_thumbnail} productName={productDetail.title} colorI={color} talle={talle}></ItemCount>
+      </CardContent>
+
+      <CardContent  sx={{display:'flex', flexDirection:'column',width:'90%'}}>
+            <CardMedia
+                component="img"
+                height="150"
+                sx={{objectFit:"fill"}}
+                image= {`${mainImage||color==0 && GetFirstPicture(productDetail.picture0)||color==1 && GetFirstPicture(productDetail.picture1)||color==2 && GetFirstPicture(productDetail.picture2)}`}
+                alt = {productDetail.title}
+            /> 
+            <CardContent sx={{display:'flex', flexDirection:'row',gap:1,overflow:'clip',paddingLeft:0,paddingRight:0,paddingBottom:0}} >
+                    {color == 0 && CreateCardPicture(productDetail.picture0,setMainImage)}
+                    {color == 1 && CreateCardPicture(productDetail.picture1,setMainImage)}
+                    {color == 2 && CreateCardPicture(productDetail.picture2,setMainImage)}
+            </CardContent>
+    </CardContent> 
+     
      </Card>
-     }
+    </>
+    }     
         </>
     )
 }
