@@ -85,14 +85,13 @@ function onAdd(quantityToAdd,productId,price,stock,thumbnail,productName){
 
 return(
         <>
-        {/* for desktop mode*/}
+        {/* for desktop mode 900 up*/}
     {loading ? <LandingPage message={"Loading..."}> </LandingPage>:
    <>
-   <Card sx={{display:{md:'flex',xs:'none'}, flexDirection:'row',justifyContent:'space-between'}}>
-     <CardContent  sx={{display:'flex', flexDirection:'column',width:'100%'}}>
+   <Card sx={{display:{md:'flex',xs:'none'}, flexDirection:'row',justifyContent:'space-between',margin:'auto'}}>
+     <CardContent  sx={{display:'flex', flexDirection:'column',width:'100%',margin:'auto'}}>
             <CardMedia
                 component="img"
-                height="500"
                 sx={{objectFit:"fill"}}
                 image= {`${mainImage||color==0 && GetFirstPicture(productDetail.picture0)||color==1 && GetFirstPicture(productDetail.picture1)||color==2 && GetFirstPicture(productDetail.picture2)}`}
                 alt = {productDetail.title}
@@ -157,7 +156,7 @@ return(
      
     </Card>
 
-    {/*for responsive screen*/}
+    {/*for mobile screen*/}
 
     <Card sx={{display:{md:'none',xs:'flex'}, flexDirection:'column',justifyContent:'space-between',width:'100%',marginTop:'5%',marginBottom:'5%'}}>
 
@@ -213,10 +212,9 @@ return(
         <ItemCount stock={productDetail.stock} initial={0} onAdd={onAdd} productId={productDetail.apiId} price={productDetail.price} thumbnail={productDetail.img_thumbnail} productName={productDetail.title} colorI={color} talle={talle}></ItemCount>
       </CardContent>
 
-      <CardContent  sx={{display:'flex', flexDirection:'column',width:'90%'}}>
+      <CardContent  sx={{display:'flex', flexDirection:'column',width:'90%',margin:'auto'}}>
             <CardMedia
                 component="img"
-                height="150"
                 sx={{objectFit:"fill"}}
                 image= {`${mainImage||color==0 && GetFirstPicture(productDetail.picture0)||color==1 && GetFirstPicture(productDetail.picture1)||color==2 && GetFirstPicture(productDetail.picture2)}`}
                 alt = {productDetail.title}
