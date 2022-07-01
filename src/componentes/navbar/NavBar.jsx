@@ -125,7 +125,7 @@ function NavBar(){
             mr: 0 }} >
             </LocalFireDepartmentIcon>
         
-            <Link to={'/'} style={{textDecoration:'none'}}><Typography
+            <Link to={'/react_alegrecristian/'} style={{textDecoration:'none'}}><Typography
             variant="h5"
             noWrap
             color='white'
@@ -165,7 +165,7 @@ function NavBar(){
           }}
           >
           </LocalFireDepartmentIcon>
-          <Link to={'/'} style={{textDecoration:'none'}}><Typography
+          <Link to={'/react_alegrecristian/'} style={{textDecoration:'none'}}><Typography
             variant="h6"
             noWrap
             color="white"

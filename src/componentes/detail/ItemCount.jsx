@@ -158,7 +158,7 @@ CustomCountButton.propTypes = {
         </Box>
         <AddCarButton disabled={talle!=="" && init !==0 ?false:true}  onClick={()=>{onAdd(init,productId,price,stock,thumbnail,productName);changeDisplayButtom()}}  size="small"  sx={{ m:"0",p:"0"}}>Agregar al Carrito</AddCarButton>
         </CardActions>
-         <Link to={`/cart`} style={{textDecoration:'none', display:`${displayAddButtom ? "none" : "flex"}`}}><AddCarButton  size="small" sx={{ m:"0",p:"0",display:`${displayAddButtom ? "none" : "block"}`}}>Ir al Carrito</AddCarButton></Link>
+         <Link to={`/react_alegrecristian/cart`} style={{textDecoration:'none', display:`${displayAddButtom ? "none" : "flex"}`}}><AddCarButton  size="small" sx={{ m:"0",p:"0",display:`${displayAddButtom ? "none" : "block"}`}}>Ir al Carrito</AddCarButton></Link>
          </>
     );
 }
