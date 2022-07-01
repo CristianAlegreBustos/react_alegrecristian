@@ -26,17 +26,17 @@ function chooseObjectId(page){
   switch (page) {
     case 'Inicio':
     
-    return '/';
+    return '/react_alegrecristian';
       break;
     case 'Calzado':
 
-    return '/category/zapatillas de basquet';
+    return '/react_alegrecristian/category/zapatillas de basquet';
     break;
     case 'Accesorios':
-      return '/category/accesorios de basquet';
+      return '/react_alegrecristian/category/accesorios de basquet';
     break;
     case 'Ropa':
-      return '/category/ropa de basquet'
+      return '/react_alegrecristian/category/ropa de basquet'
     break;
     default: 
       return 'error';
