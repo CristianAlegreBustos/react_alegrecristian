@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "54caff21f147f7707d35",
+    "revision": "83cc69d85879eb92f70f",
     "url": "/react_alegrecristian/static/css/main.e8118fa3.chunk.css"
   },
   {
-    "revision": "54caff21f147f7707d35",
-    "url": "/react_alegrecristian/static/js/main.de28aee4.chunk.js"
+    "revision": "83cc69d85879eb92f70f",
+    "url": "/react_alegrecristian/static/js/main.7aba7d3d.chunk.js"
   },
   {
     "revision": "cb20187a6a68c86ef8d4",
@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/react_alegrecristian/static/js/3.27459842.chunk.js"
   },
   {
-    "revision": "9e72624b8b024abba96025ce9bd1a1b0",
+    "revision": "220c52b42ed650e68c6abd99c4526148",
     "url": "/react_alegrecristian/index.html"
   }
 ];
