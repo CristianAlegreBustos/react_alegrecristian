@@ -19,7 +19,7 @@ function App() {
     <Container maxWidth="xl">
       <Routes>
         <Route path="/react_alegrecristian" element={<ItemListContainer></ItemListContainer>}></Route>
-        <Route path="/react_alegrecristian/category/:categoryId" element={<ItemListContainer></ItemListContainer>}></Route>
+        <Route path="/category/:categoryId" element={<ItemListContainer></ItemListContainer>}></Route>
         <Route path="/react_alegrecristian/itemDetail/:productId" element={<ItemDetailContainer></ItemDetailContainer>}></Route>
         <Route path="/react_alegrecristian/cart" element={<Cart></Cart>}></Route>
       </Routes>
