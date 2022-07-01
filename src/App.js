@@ -18,10 +18,10 @@ function App() {
     <NavBar/>
     <Container maxWidth="xl">
       <Routes>
-        <Route path="/" element={<ItemListContainer></ItemListContainer>}></Route>
-        <Route path="/category/:categoryId" element={<ItemListContainer></ItemListContainer>}></Route>
-        <Route path="/itemDetail/:productId" element={<ItemDetailContainer></ItemDetailContainer>}></Route>
-        <Route path="/cart" element={<Cart></Cart>}></Route>
+        <Route path="/react_alegrecristian" element={<ItemListContainer></ItemListContainer>}></Route>
+        <Route path="/react_alegrecristian/category/:categoryId" element={<ItemListContainer></ItemListContainer>}></Route>
+        <Route path="/react_alegrecristian/itemDetail/:productId" element={<ItemDetailContainer></ItemDetailContainer>}></Route>
+        <Route path="/react_alegrecristian/cart" element={<Cart></Cart>}></Route>
       </Routes>
     </Container>
     </ThemeProvider>
