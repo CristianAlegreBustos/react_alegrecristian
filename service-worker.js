@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/react_alegrecristian/precache-manifest.2da6220f5f41150d4d10ca0ed9dbf8d4.js"
+  "/react_alegrecristian/precache-manifest.45117a4b6430bb860ca9cafc7fd782af.js"
 );
 
 workbox.clientsClaim();
